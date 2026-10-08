@@ -373,3 +373,6 @@
     updateUser(null);
   }
 })();
+const adminScript = document.createElement("script");
+adminScript.src = "admin.js";
+document.body.appendChild(adminScript);
