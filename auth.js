@@ -107,41 +107,8 @@ accountPanel.innerHTML = `
       <span>Çıkış Yap</span>
     </button>
 
-  </div>
-`;
-    <div class="account-panel">
-      <button class="account-close">×</button>
+  </div>`;
 
-      <div class="account-user">
-        <div class="account-avatar">👤</div>
-        <div>
-          <h2 class="account-name">Hesabım</h2>
-          <p class="account-email"></p>
-        </div>
-      </div>
-
-      <div class="account-balance">
-        <div>
-          <b>0,00 ₺</b>
-          <span>Bakiye</span>
-        </div>
-        <div>
-          <b>0,00 ₺</b>
-          <span>Çekilebilir Bakiye</span>
-        </div>
-      </div>
-
-      <button class="account-action verify">🪪　Kimlik Doğrula</button>
-
-      <div class="account-two">
-        <button class="account-action">💳　Bakiye Yükle</button>
-        <button class="account-action">💸　Para Çek</button>
-      </div>
-
-      <button class="account-action add-listing">＋　İlan Ekle</button>
-      <button class="account-action">⚙️　Kontrol Merkezi</button>
-    </div>
-  `;
 
   const accountOverlay = document.createElement("div");
   accountOverlay.className = "account-overlay";
