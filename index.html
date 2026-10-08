@@ -102,26 +102,29 @@
   <div class="login-box auth-box">
     <button class="modal-close" id="loginClose" type="button">×</button>
     <h2 id="authTitle">Giriş Yap</h2>
-    <p id="authSubtitle">Hesabınızla giriş yapın veya ücretsiz hesap oluşturun.</p>
+    <p id="authSubtitle">Aşağıdaki seçeneklerden hızlıca giriş yapabilirsiniz.</p>
 
     <div class="socials auth-socials">
-      <button class="google" id="googleAuth" type="button" aria-label="Google ile devam et">G</button>
-      <button class="facebook" id="facebookAuth" type="button" aria-label="Facebook ile devam et">f</button>
+      <button class="social-google" id="googleAuth" type="button" aria-label="Google ile devam et"><b>G</b></button>
+      <button class="social-facebook" id="facebookAuth" type="button" aria-label="Facebook ile devam et"><b>f</b></button>
+      <button class="social-discord" type="button" aria-label="Discord ile devam et"><b>☯</b></button>
+      <button class="social-steam" type="button" aria-label="Steam ile devam et"><b>◉</b></button>
     </div>
 
     <div class="or"><i></i><span>veya</span><i></i></div>
 
-    <label>E-posta</label>
-    <input id="authEmail" type="email" autocomplete="email" placeholder="ornek@mail.com">
+    <div class="auth-label-row"><label>Kullanıcı Adı / Mail / Telefon</label><button type="button" class="auth-link">Kullanıcı adımı unuttum</button></div>
+    <input id="authEmail" type="email" autocomplete="username" placeholder="">
 
-    <label>Şifre</label>
+    <div class="auth-label-row"><label>Parola</label><button type="button" class="auth-link">Şifremi unuttum</button></div>
     <div class="password">
-      <input id="authPassword" type="password" autocomplete="current-password" placeholder="En az 6 karakter">
-      <button id="togglePassword" type="button">◉</button>
+      <input id="authPassword" type="password" autocomplete="current-password" placeholder="">
+      <button id="togglePassword" type="button" aria-label="Parolayı göster">◉</button>
     </div>
 
     <button class="login-submit" id="emailAuth" type="button">Giriş Yap</button>
-    <button class="auth-secondary" id="switchAuth" type="button">Hesabın yok mu? Ücretsiz üye ol</button>
+    <button class="auth-recovery" type="button">Mail ve telefon numarama erişimim yok</button>
+    <button class="auth-secondary" id="switchAuth" type="button">Hala bir üyeliğiniz yok mu? <strong>Hemen ücretsiz üye ol</strong></button>
     <button class="auth-logout" id="logoutAuth" type="button" hidden>Çıkış Yap</button>
     <div class="auth-status" id="authStatus" role="status"></div>
   </div>
