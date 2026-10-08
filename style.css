@@ -678,4 +678,18 @@ font-weight:600!important;
     transform:translateX(0);
     opacity:1;
   }
+}.itemsatis-carousel-ready .hero-img{
+  animation: itemsatisSlideIn .42s cubic-bezier(.22,.61,.36,1);
+  will-change: transform, opacity;
+}
+
+@keyframes itemsatisSlideIn{
+  from{
+    transform:translateX(34px);
+    opacity:.25;
+  }
+  to{
+    transform:translateX(0);
+    opacity:1;
+  }
 }
