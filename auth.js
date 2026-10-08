@@ -365,8 +365,8 @@ async function loadWallet(user) {
     if (label) label.textContent = user ? "Hesabım" : "Giriş Yap";
     logoutBtn.hidden = !user;
     if (user) {
-      title.textContent = "Hesabım";
       loadWallet(user);
+      title.textContent = "Hesabım"; 
       subtitle.textContent = user.email || "Oturum açık";
       email.value = user.email || "";
       emailBtn.style.display = "none";
