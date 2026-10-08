@@ -192,48 +192,71 @@
     '<i data-slide="'+i+'" class="'+(i===0?'on':'')+'"></i>'
   ).join('');
   const dots=dotsBox.querySelectorAll('i');
-  function showSlide(n){
+function showSlide(n){
   const next=(n+slides.length)%slides.length;
   if(next===current)return;
 
-  const direction=next>current||current===slides.length-1&&next===0?1:-1;
+  const direction =
+    (next>current || (current===slides.length-1 && next===0))
+    ? 1 : -1;
+
   const oldImg=img;
-  const newImg=img.cloneNode(true);
+  const newImg=document.createElement('img');
 
   newImg.src=slides[next][0];
   newImg.alt=slides[next][1];
+  newImg.className='hero-img';
 
-  newImg.style.position='absolute';
-  newImg.style.inset='0';
-  newImg.style.width='100%';
-  newImg.style.height='100%';
-  newImg.style.objectFit='contain';
-  newImg.style.transform=`translateX(${direction*100}%)`;
-  newImg.style.transition='transform .45s cubic-bezier(.22,.61,.36,1)';
-  oldImg.style.transition='transform .45s cubic-bezier(.22,.61,.36,1)';
+  newImg.style.cssText=`
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transform:translateX(${direction*100}%);
+    transition:none;
+    z-index:2;
+  `;
 
-  card.style.overflow='hidden';
+  oldImg.style.transition='none';
+  oldImg.style.transform='translateX(0)';
+  oldImg.style.position='relative';
+  oldImg.style.zIndex='1';
+
   card.appendChild(newImg);
 
+  newImg.offsetWidth;
+
   requestAnimationFrame(()=>{
-    oldImg.style.transform=`translateX(${-direction*100}%)`;
+    newImg.style.transition=
+      'transform 500ms cubic-bezier(.25,.8,.25,1)';
+    oldImg.style.transition=
+      'transform 500ms cubic-bezier(.25,.8,.25,1)';
+
     newImg.style.transform='translateX(0)';
+    oldImg.style.transform=
+      `translateX(${-direction*100}%)`;
   });
 
   setTimeout(()=>{
-    img.remove();
+    oldImg.remove();
+
     newImg.style.position='';
     newImg.style.inset='';
+    newImg.style.height='';
     newImg.style.transform='';
     newImg.style.transition='';
-    newImg.className='hero-img';
-  },470);
+    newImg.style.zIndex='';
+  },520);
 
   current=next;
 
   const span=button.querySelector('span');
   if(span)span.textContent=slides[current][2];
-  dots.forEach((d,i)=>d.classList.toggle('on',i===current));
+
+  dots.forEach((d,i)=>
+    d.classList.toggle('on',i===current)
+  );
 }
   function start(){
     clearInterval(timer);
