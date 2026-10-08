@@ -79,12 +79,16 @@ accountPanel.innerHTML = `
   </div>
 
   <div class="account-withdrawable">
-    <div class="account-withdrawable-icon">⇩</div>
-    <div>
-      <div><b>0.00 ₺</b></div>
-      <span>Çekilebilir Bakiye</span>
+  <div class="account-withdrawable-icon">⇩</div>
+
+  <div>
+    <div class="account-withdrawable-value">
+      <b>0.00 ₺</b>
     </div>
+
+    <span>Çekilebilir Bakiye</span>
   </div>
+</div>
 
   <button class="account-verify">
     🛡️ &nbsp; Kimlik Doğrula
@@ -874,6 +878,9 @@ async function loadWallet(user) {
     const balances = accountOverlay.querySelectorAll(
       ".account-balance div b"
     );
+    const withdrawableEl = accountOverlay.querySelector(
+  ".account-withdrawable-value b"
+);
 
     const balance =
       Number(data?.balance || 0)
@@ -889,9 +896,9 @@ async function loadWallet(user) {
       balances[0].textContent = balance;
     }
 
-    if (balances[1]) {
-      balances[1].textContent = withdrawable;
-    }
+    if (withdrawableEl) {
+  withdrawableEl.textContent = withdrawable;
+}
 
   } catch (err) {
     console.error("Wallet load error:", err);
