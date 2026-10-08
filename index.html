@@ -1,1 +1,78 @@
-<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ItemSatış | Dijital Oyun Pazarı</title><link rel="stylesheet" href="style.css"></head><body><header><a class="logo">item<span>satış</span></a><div class="search">🔎 <input id="q" placeholder="Ürün, oyun veya kategori ara..."></div><button class="login">Giriş Yap</button><button class="cart">🛒 Sepet <b id="count">0</b></button></header><nav><a href="#games">Oyunlar</a><a href="#products">Ürünler</a><a href="#products">Satıcılar</a><a href="#games">Popüler</a></nav><main><section class="hero"><div><small>GÜVENLİ DİJİTAL PAZAR</small><h1>Oyun dünyasının<br><em>alışveriş noktası.</em></h1><p>PUBG, Valorant, Minecraft ve daha fazlası için dijital ürünleri keşfet.</p><button onclick="document.getElementById('products').scrollIntoView()">Ürünleri Keşfet</button></div><div class="heroCard">🪖<b>PUBG</b><small>Popüler ürünler</small></div></section><section id="games"><h2>Popüler Oyunlar</h2><div class="games"><button onclick="game('PUBG')">🪖 PUBG</button><button onclick="game('Valorant')">🎯 Valorant</button><button onclick="game('Minecraft')">⛏️ Minecraft</button><button onclick="game('Roblox')">🧱 Roblox</button><button onclick="game('CS2')">🔫 CS2</button><button onclick="game('LoL')">⚔️ LoL</button></div></section><section id="products"><div class="bar"><h2>Öne Çıkan Ürünler</h2><select id="filter"><option value="all">Tüm oyunlar</option><option>PUBG</option><option>Valorant</option><option>Minecraft</option><option>Roblox</option><option>CS2</option><option>LoL</option></select></div><div id="grid" class="grid"></div></section></main><button class="support" onclick="alert('Destek ekibi yakında burada!')">💬 Destek</button><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ItemSatış</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-ad">
+  <span>🎮</span>
+  <div><b>PUBG UC</b><small>Hızlı teslimat, güvenli alışveriş.</small></div>
+</div>
+
+<header>
+  <button class="icon-btn" id="menuBtn">☰</button>
+  <div class="brand">item<span>satış</span></div>
+  <button class="icon-btn">◯</button>
+</header>
+
+<div class="searchbar">
+  <span>⌕</span>
+  <input id="q" placeholder="Buraya tıklayarak arama yap...">
+</div>
+
+<main>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-tag">PUBG</span>
+    <h1>Uygun fiyatlı<br><b>PUBG ürünleri</b></h1>
+    <p>UC, hesap ve dijital ürünleri keşfet.</p>
+    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🛒 Alışverişe Başla</button>
+  </div>
+  <div class="dots"><i class="active"></i><i></i><i></i><i></i><i></i></div>
+</section>
+
+<section class="quick">
+  <button onclick="game('all')"><b>▦</b><span>Tüm Kategoriler</span></button>
+  <button onclick="game('PUBG')"><b>🪖</b><span>PUBG</span></button>
+  <button onclick="game('Valorant')"><b>🎯</b><span>Valorant</span></button>
+  <button onclick="game('Minecraft')"><b>⛏️</b><span>Minecraft</span></button>
+</section>
+
+<section id="products">
+  <div class="section-head">
+    <h2>Öne Çıkan Ürünler</h2>
+    <button onclick="game('all')">Tümü →</button>
+  </div>
+  <div id="grid" class="grid"></div>
+</section>
+
+</main>
+
+<div id="drawer" class="drawer">
+  <button onclick="closeMenu()">✕</button>
+  <h2>Kategoriler</h2>
+  <a onclick="game('PUBG')">🪖 PUBG</a>
+  <a onclick="game('Valorant')">🎯 Valorant</a>
+  <a onclick="game('Minecraft')">⛏️ Minecraft</a>
+  <a onclick="game('Roblox')">🧱 Roblox</a>
+  <a onclick="game('CS2')">🔫 CS2</a>
+  <a onclick="game('LoL')">⚔️ LoL</a>
+</div>
+
+<nav class="bottom-nav">
+  <button><b>⌂</b><span>Anasayfa</span></button>
+  <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><b>▣</b><span>İlan Pazarı</span></button>
+  <button onclick="document.getElementById('games')?.scrollIntoView()"><b>▦</b><span>Kategoriler</span></button>
+  <button onclick="alert('Destek ekibi yakında burada!')"><b>◉</b><span>Destek</span></button>
+  <button><b>◯</b><span>Giriş Yap</span></button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
