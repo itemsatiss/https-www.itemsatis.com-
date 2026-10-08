@@ -365,14 +365,10 @@ document.head.appendChild(accountCSS);
     if (error) msg(error.message, "error");
   }
 
+  
   googleBtn.addEventListener("click", () => oauth("google"));
-  googleBtn.onclick = async function () {
-  if (!supabase) {
-    msg("Supabase bağlantısı hazır değil.", "error");
-    return;
-  }
 
-  msg("Google'a yönlendiriliyor...", "ok");
+  
 
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
