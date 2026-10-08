@@ -366,6 +366,25 @@ document.head.appendChild(accountCSS);
   }
 
   googleBtn.addEventListener("click", () => oauth("google"));
+  googleBtn.onclick = async function () {
+  if (!supabase) {
+    msg("Supabase bağlantısı hazır değil.", "error");
+    return;
+  }
+
+  msg("Google'a yönlendiriliyor...", "ok");
+
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://itemsatiss.github.io/https-www.itemsatis.com-/"
+    }
+  });
+
+  if (error) {
+    msg(error.message, "error");
+  }
+};
   facebookBtn.addEventListener("click", () => oauth("facebook"));
 
   emailBtn.addEventListener("click", async () => {
