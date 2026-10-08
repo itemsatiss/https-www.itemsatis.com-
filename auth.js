@@ -127,7 +127,8 @@
     msg("Çıkış yapıldı.", "ok");
   });
 
-  function updateUser(user) {
+  function updateUser(user) {window.itemsatisOpenProfile = openProfile;}
+    window.ITEMSATIS_AUTH_USER = user || null;
     const label = document.querySelector("#bottomLogin span");
     if (label) label.textContent = user ? "Hesabım" : "Giriş Yap";
     logoutBtn.hidden = !user;
