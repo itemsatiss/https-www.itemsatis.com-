@@ -251,139 +251,150 @@ accountCSS.textContent = `
   line-height:42px;
 }
 .account-dashboard{
+  width:100%;
   display:flex;
   flex-direction:column;
-  gap:14px;
-  margin:4px 0 22px;
+  gap:22px;
+  margin:8px 0 28px;
 }
 
 .account-profile-card{
-  min-height:120px;
-  padding:18px;
+  width:100%;
+  min-height:155px;
+  padding:22px 28px;
   box-sizing:border-box;
   display:flex;
   align-items:center;
-  gap:14px;
-  border-radius:15px;
-  background:#454b73;
+  gap:20px;
+  border-radius:22px;
+  background:#454d7b;
 }
 
 .account-profile-avatar{
-  width:58px;
-  height:58px;
+  width:72px;
+  height:72px;
   flex:none;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#176b5d;
-  font-size:28px;
+  overflow:hidden;
+  background:#08735f;
+  color:#fff;
+  font-size:34px;
+}
+
+.account-profile-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .account-profile-info{
+  min-width:0;
   flex:1;
 }
 
 .account-profile-name{
-  font-size:19px;
-  font-weight:600;
   color:#fff;
+  font-size:24px;
+  font-weight:500;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
 .account-profile-link{
-  margin-top:5px;
+  margin-top:7px;
   color:#aebcff;
-  font-size:14px;
+  font-size:18px;
 }
 
 .account-wallet{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:18px;
 }
 
 .account-wallet-icon{
-  font-size:42px;
-  color:#cbd5ff;
+  font-size:54px;
+  color:#d4dcff;
 }
 
 .account-balance{
+  min-width:145px;
   text-align:right;
 }
 
 .account-balance b{
-  font-size:21px;
   color:#fff;
+  font-size:27px;
+  font-weight:500;
 }
 
 .account-balance div:last-child{
-  margin-top:4px;
-  color:#b8c3ff;
-  font-size:14px;
+  margin-top:7px;
+  color:#aebcff;
+  font-size:18px;
 }
 
 .account-withdrawable{
-  min-height:100px;
-  padding:18px;
+  width:100%;
+  min-height:130px;
+  padding:25px 32px;
   box-sizing:border-box;
   display:flex;
   align-items:center;
-  gap:16px;
-  border-radius:15px;
-  background:#394f78;
+  gap:25px;
+  border-radius:22px;
+  background:#39537f;
 }
 
 .account-withdrawable-icon{
-  font-size:38px;
-  color:#d8e0ff;
+  width:65px;
+  flex:none;
+  text-align:center;
+  color:#dbe3ff;
+  font-size:52px;
 }
 
 .account-withdrawable b{
-  font-size:20px;
   color:#fff;
+  font-size:28px;
+  font-weight:500;
 }
 
 .account-withdrawable span{
   display:block;
-  margin-top:5px;
-  color:#9fd0ff;
-  font-size:14px;
-}
-
-.account-verify,
-.account-add-listing{
-  width:100%;
-  height:65px;
-  border:0;
-  border-radius:15px;
-  color:#fff;
-  font-size:18px;
-  font-weight:500;
+  margin-top:8px;
+  color:#9ecbff;
+  font-size:19px;
 }
 
 .account-verify{
-  background:#2862dc;
-}
-
-.account-add-listing{
-  background:#6264ed;
+  width:100%;
+  height:78px;
+  border:0;
+  border-radius:17px;
+  background:#2864df;
+  color:#fff;
+  font-size:24px;
+  font-weight:500;
 }
 
 .account-money-buttons{
+  width:100%;
   display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:12px;
+  grid-template-columns:1.25fr .85fr;
+  gap:20px;
 }
 
 .account-money-buttons button{
-  height:65px;
+  height:78px;
   border:0;
-  border-radius:15px;
+  border-radius:17px;
   color:#fff;
-  font-size:17px;
+  font-size:21px;
   font-weight:500;
 }
 
@@ -392,7 +403,108 @@ accountCSS.textContent = `
 }
 
 .account-withdraw{
-  background:#2862dc;
+  background:#2864df;
+}
+
+.account-add-listing{
+  width:100%;
+  height:78px;
+  border:0;
+  border-radius:18px;
+  background:#6265ed;
+  color:#fff;
+  font-size:24px;
+  font-weight:500;
+}
+
+@media(max-width:520px){
+
+  .account-dashboard{
+    gap:16px;
+    margin-top:4px;
+  }
+
+  .account-profile-card{
+    min-height:115px;
+    padding:17px;
+    gap:12px;
+    border-radius:16px;
+  }
+
+  .account-profile-avatar{
+    width:58px;
+    height:58px;
+    font-size:27px;
+  }
+
+  .account-profile-name{
+    font-size:17px;
+  }
+
+  .account-profile-link{
+    font-size:15px;
+    margin-top:4px;
+  }
+
+  .account-wallet{
+    gap:8px;
+  }
+
+  .account-wallet-icon{
+    font-size:40px;
+  }
+
+  .account-balance{
+    min-width:95px;
+  }
+
+  .account-balance b{
+    font-size:20px;
+  }
+
+  .account-balance div:last-child{
+    font-size:15px;
+  }
+
+  .account-withdrawable{
+    min-height:105px;
+    padding:18px;
+    gap:15px;
+    border-radius:16px;
+  }
+
+  .account-withdrawable-icon{
+    width:45px;
+    font-size:38px;
+  }
+
+  .account-withdrawable b{
+    font-size:21px;
+  }
+
+  .account-withdrawable span{
+    font-size:16px;
+  }
+
+  .account-verify{
+    height:65px;
+    font-size:19px;
+  }
+
+  .account-money-buttons{
+    gap:12px;
+  }
+
+  .account-money-buttons button{
+    height:65px;
+    border-radius:15px;
+    font-size:17px;
+  }
+
+  .account-add-listing{
+    height:65px;
+    font-size:20px;
+  }
 }
 .account-menu{
   display:flex;
