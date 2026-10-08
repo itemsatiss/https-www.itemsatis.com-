@@ -193,14 +193,48 @@
   ).join('');
   const dots=dotsBox.querySelectorAll('i');
   function showSlide(n){
-    current=(n+slides.length)%slides.length;
-    const s=slides[current];
-    img.src=s[0];
-    img.alt=s[1];
-    const span=button.querySelector('span');
-    if(span)span.textContent=s[2];
-    dots.forEach((d,i)=>d.classList.toggle('on',i===current));
-  }
+  const next=(n+slides.length)%slides.length;
+  if(next===current)return;
+
+  const direction=next>current||current===slides.length-1&&next===0?1:-1;
+  const oldImg=img;
+  const newImg=img.cloneNode(true);
+
+  newImg.src=slides[next][0];
+  newImg.alt=slides[next][1];
+
+  newImg.style.position='absolute';
+  newImg.style.inset='0';
+  newImg.style.width='100%';
+  newImg.style.height='100%';
+  newImg.style.objectFit='contain';
+  newImg.style.transform=`translateX(${direction*100}%)`;
+  newImg.style.transition='transform .45s cubic-bezier(.22,.61,.36,1)';
+  oldImg.style.transition='transform .45s cubic-bezier(.22,.61,.36,1)';
+
+  card.style.overflow='hidden';
+  card.appendChild(newImg);
+
+  requestAnimationFrame(()=>{
+    oldImg.style.transform=`translateX(${-direction*100}%)`;
+    newImg.style.transform='translateX(0)';
+  });
+
+  setTimeout(()=>{
+    img.remove();
+    newImg.style.position='';
+    newImg.style.inset='';
+    newImg.style.transform='';
+    newImg.style.transition='';
+    newImg.className='hero-img';
+  },470);
+
+  current=next;
+
+  const span=button.querySelector('span');
+  if(span)span.textContent=slides[current][2];
+  dots.forEach((d,i)=>d.classList.toggle('on',i===current));
+}
   function start(){
     clearInterval(timer);
     timer=setInterval(()=>showSlide(current+1),4000);
