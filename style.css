@@ -683,30 +683,8 @@ font-weight:600!important;
     backdrop-filter:blur(18px)!important;
     -webkit-backdrop-filter:blur(18px)!important;
   }
-}/* ARAMA ÇUBUĞU - TAM SAYDAM CAM */
+/* ARAMA ÇUBUĞU - GERÇEKTEN ŞEFFAF */
 .reference-search{
-  background:rgba(255,255,255,.035)!important;
+  background:transparent!important;
   color:rgba(238,240,247,.72)!important;
-  border:0!important;
-  box-shadow:none!important;
-  backdrop-filter:blur(18px)!important;
-  -webkit-backdrop-filter:blur(18px)!important;
-}
-
-.reference-search > span:last-child{
-  color:rgba(238,240,247,.72)!important;
-}
-
-.search-glass{
-  color:rgba(245,246,250,.82)!important;
-  opacity:1!important;
-}
-
-@media(max-width:520px){
-  .reference-search{
-    background:rgba(255,255,255,.035)!important;
-    box-shadow:none!important;
-    backdrop-filter:blur(18px)!important;
-    -webkit-backdrop-filter:blur(18px)!important;
-  }
-}
+  border:0
