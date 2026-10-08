@@ -37,11 +37,12 @@
   <div class="dots"><i class="active"></i><i></i><i></i><i></i><i></i></div>
 </section>
 
-<section class="quick">
+<section class="quick" id="games">
   <button onclick="game('all')"><b>▦</b><span>Tüm Kategoriler</span></button>
   <button onclick="game('PUBG')"><b>🪖</b><span>PUBG</span></button>
   <button onclick="game('Valorant')"><b>🎯</b><span>Valorant</span></button>
   <button onclick="game('Minecraft')"><b>⛏️</b><span>Minecraft</span></button>
+  <button onclick="game('Roblox')"><b class="roblox-icon"><img src="https://cdn.itemsatis.com/uploads/category_images/roblox-504.png?sharpen=true&width=80" alt="Roblox"></b><span>Roblox</span></button>
 </section>
 
 <section id="products">
@@ -65,11 +66,13 @@
   <a onclick="game('LoL')">⚔️ LoL</a>
 </div>
 
+<button class="support-float" onclick="support()">💬</button>
+
 <nav class="bottom-nav">
   <button><b>⌂</b><span>Anasayfa</span></button>
   <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><b>▣</b><span>İlan Pazarı</span></button>
   <button onclick="document.getElementById('games')?.scrollIntoView()"><b>▦</b><span>Kategoriler</span></button>
-  <button onclick="alert('Destek ekibi yakında burada!')"><b>◉</b><span>Destek</span></button>
+  <button onclick="support()"><b>◉</b><span>Destek</span></button>
   <button><b>◯</b><span>Giriş Yap</span></button>
 </nav>
 

@@ -4,7 +4,7 @@ const products=[
 ["PUBG","PUBG UC 8100 UC",2599,"GüvenliSatıcı","🪖"],
 ["Valorant","Valorant 2050 VP",799,"VPlay","🎯"],
 ["Minecraft","Minecraft Java Edition",899,"PixelStore","⛏️"],
-["Roblox","Roblox 1700 Robux",549,"RoboShop","🧱"],
+["Roblox","Roblox 1700 Robux",549,"RoboShop","ROBLOX_IMG"],
 ["CS2","CS2 Prime Upgrade",699,"GameMarket","🔫"],
 ["LoL","LoL 2800 RP",749,"VPlay","⚔️"]
 ];
@@ -18,7 +18,7 @@ function render(filter="all"){
  (p[0]+" "+p[1]+" "+p[3]).toLowerCase().includes(query));
  grid.innerHTML=list.map(p=>`
  <article class="product" onclick="add('${p[1]}')">
-  <div class="thumb">${p[4]}</div>
+  <div class="thumb">${p[4]==="ROBLOX_IMG"?`<img class="product-img" src="https://cdn.itemsatis.com/uploads/category_images/roblox-504.png?sharpen=true&width=80" alt="Roblox">`:p[4]}</div>
   <div class="info">
    <div class="tag">${p[0]}</div>
    <h3>${p[1]}</h3>
@@ -33,3 +33,4 @@ function closeMenu(){drawer.classList.remove("open")}
 document.getElementById("menuBtn").onclick=()=>drawer.classList.add("open");
 q.addEventListener("input",()=>render());
 render();
+function support(){alert("Özel destek yakında burada olacak.");}
