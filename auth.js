@@ -370,17 +370,7 @@ document.head.appendChild(accountCSS);
 
   
 
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: "https://itemsatiss.github.io/https-www.itemsatis.com-/"
-    }
-  });
-
-  if (error) {
-    msg(error.message, "error");
-  }
-};
+  
   facebookBtn.addEventListener("click", () => oauth("facebook"));
 
   emailBtn.addEventListener("click", async () => {
