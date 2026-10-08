@@ -625,14 +625,29 @@
   });
 
   drawer.querySelector(".is-checkout")
-    .addEventListener("click",() => {
-      if(typeof openLogin === "function"){
-        drawer.classList.remove("open");
-        openLogin();
-      }else{
-        alert("Önce hesabınıza giriş yapmanız gerekiyor.");
-      }
-    });
+  .addEventListener("click",() => {
+    const accountText =
+      document.querySelector("#bottomLogin span")?.textContent?.trim();
+
+    if(accountText === "Hesabım"){
+      drawer.classList.remove("open");
+
+      alert(
+        "Sipariş oluşturma ekranı açılıyor.\n\n" +
+        "Hesabınız doğrulandı. Ödeme adımına geçebilirsiniz."
+      );
+
+      return;
+    }
+
+    drawer.classList.remove("open");
+
+    if(typeof openLogin === "function"){
+      openLogin();
+    }else{
+      alert("Önce hesabınıza giriş yapmanız gerekiyor.");
+    }
+  });
 
   detail.addEventListener("click",event => {
 
