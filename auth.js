@@ -950,3 +950,56 @@ async function loadWallet(user) {
 const adminScript = document.createElement("script");
 adminScript.src = "admin.js";
 document.body.appendChild(adminScript);
+// CANLI DESTEK SİSTEMİ
+const supportOpenBtn = document.getElementById("supportOpen");
+
+if (supportOpenBtn) {
+  supportOpenBtn.addEventListener("click", openSupportChat);
+}
+
+function openSupportChat() {
+  if (document.getElementById("supportChatOverlay")) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "supportChatOverlay";
+
+  overlay.innerHTML = `
+    <div class="support-chat-panel">
+      <div class="support-chat-header">
+        <button id="supportBack">‹</button>
+        <div>
+          <b>Canlı Destek</b>
+          <span>Destek ekibi</span>
+        </div>
+        <button id="supportClose">×</button>
+      </div>
+
+      <div id="supportMessages" class="support-messages">
+        <div class="support-welcome">
+          Merhaba 👋<br>
+          Size nasıl yardımcı olabiliriz?
+        </div>
+      </div>
+
+      <div class="support-input-area">
+        <input
+          id="supportInput"
+          type="text"
+          placeholder="Mesajınızı yazın..."
+          autocomplete="off"
+        >
+        <button id="supportSend">➤</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  document.getElementById("supportClose").onclick = () => {
+    overlay.remove();
+  };
+
+  document.getElementById("supportBack").onclick = () => {
+    overlay.remove();
+  };
+}
