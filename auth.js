@@ -241,7 +241,150 @@ accountCSS.textContent = `
   font-size:30px;
   line-height:42px;
 }
+.account-dashboard{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:4px 0 22px;
+}
 
+.account-profile-card{
+  min-height:120px;
+  padding:18px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  border-radius:15px;
+  background:#454b73;
+}
+
+.account-profile-avatar{
+  width:58px;
+  height:58px;
+  flex:none;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#176b5d;
+  font-size:28px;
+}
+
+.account-profile-info{
+  flex:1;
+}
+
+.account-profile-name{
+  font-size:19px;
+  font-weight:600;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.account-profile-link{
+  margin-top:5px;
+  color:#aebcff;
+  font-size:14px;
+}
+
+.account-wallet{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.account-wallet-icon{
+  font-size:42px;
+  color:#cbd5ff;
+}
+
+.account-balance{
+  text-align:right;
+}
+
+.account-balance b{
+  font-size:21px;
+  color:#fff;
+}
+
+.account-balance div:last-child{
+  margin-top:4px;
+  color:#b8c3ff;
+  font-size:14px;
+}
+
+.account-withdrawable{
+  min-height:100px;
+  padding:18px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  border-radius:15px;
+  background:#394f78;
+}
+
+.account-withdrawable-icon{
+  font-size:38px;
+  color:#d8e0ff;
+}
+
+.account-withdrawable b{
+  font-size:20px;
+  color:#fff;
+}
+
+.account-withdrawable span{
+  display:block;
+  margin-top:5px;
+  color:#9fd0ff;
+  font-size:14px;
+}
+
+.account-verify,
+.account-add-listing{
+  width:100%;
+  height:65px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:18px;
+  font-weight:500;
+}
+
+.account-verify{
+  background:#2862dc;
+}
+
+.account-add-listing{
+  background:#6264ed;
+}
+
+.account-money-buttons{
+  display:grid;
+  grid-template-columns:1.3fr .9fr;
+  gap:12px;
+}
+
+.account-money-buttons button{
+  height:65px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:17px;
+  font-weight:500;
+}
+
+.account-add-money{
+  background:#5144d7;
+}
+
+.account-withdraw{
+  background:#2862dc;
+}
 .account-menu{
   display:flex;
   flex-direction:column;
