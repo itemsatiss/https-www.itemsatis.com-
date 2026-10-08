@@ -1,36 +1,22 @@
-const products=[
-["PUBG","PUBG UC 660 UC",249,"GameMarket","🪖"],
-["PUBG","PUBG UC 3850 UC",1299,"GüvenliSatıcı","🪖"],
-["PUBG","PUBG UC 8100 UC",2599,"GüvenliSatıcı","🪖"],
-["Valorant","Valorant 2050 VP",799,"VPlay","🎯"],
-["Minecraft","Minecraft Java Edition",899,"PixelStore","⛏️"],
-["Roblox","Roblox 1700 Robux",549,"RoboShop","ROBLOX_IMG"],
-["CS2","CS2 Prime Upgrade",699,"GameMarket","🔫"],
-["LoL","LoL 2800 RP",749,"VPlay","⚔️"]
+const cards=[
+ {title:'Outlook 50 Adet Hesap',seller:'GüvenilirMarket',price:'0,61 $',img:'assets/hero-roblox.jpg'},
+ {title:'%100 TR Valorant Skin Garantili',seller:'FurkanMarket',price:'5,08 $',img:'assets/hero-roblox.jpg'},
+ {title:'Roblox 100 Robux',seller:'Sinquary',price:'0,81 $',img:'assets/hero-roblox.jpg'},
+ {title:'Steam İstediğiniz 1 Oyun',seller:'GüvenilirMarket',price:'0,61 $',img:'assets/hero-roblox.jpg'}
 ];
-const grid=document.getElementById("grid");
-const q=document.getElementById("q");
-const drawer=document.getElementById("drawer");
-
-function render(filter="all"){
- const query=q.value.toLowerCase().trim();
- const list=products.filter(p=>(filter==="all"||p[0]===filter)&&
- (p[0]+" "+p[1]+" "+p[3]).toLowerCase().includes(query));
- grid.innerHTML=list.map(p=>`
- <article class="product" onclick="add('${p[1]}')">
-  <div class="thumb">${p[4]==="ROBLOX_IMG"?`<img class="product-img" src="https://cdn.itemsatis.com/uploads/category_images/roblox-504.png?sharpen=true&width=80" alt="Roblox">`:p[4]}</div>
-  <div class="info">
-   <div class="tag">${p[0]}</div>
-   <h3>${p[1]}</h3>
-   <div class="seller">Satıcı: ${p[3]} ✓</div>
-   <div class="price">${p[2].toLocaleString("tr-TR")} TL</div>
-  </div>
- </article>`).join("") || "<p>Ürün bulunamadı.</p>";
-}
-function game(x){render(x);document.getElementById("products").scrollIntoView({behavior:"smooth"});closeMenu()}
-function add(name){alert(name+" sepete eklendi.");}
-function closeMenu(){drawer.classList.remove("open")}
-document.getElementById("menuBtn").onclick=()=>drawer.classList.add("open");
-q.addEventListener("input",()=>render());
-render();
-function support(){alert("Özel destek yakında burada olacak.");}
+document.getElementById('cards').innerHTML=cards.map(c=>`<article class="card" onclick="showNotice('${c.title}')"><img class="card-img" src="${c.img}" alt=""><div class="card-body"><div class="card-title">${c.title}</div><div class="card-meta">SATICI ${c.seller}</div><div class="card-price">${c.price}</div></div></article>`).join('');
+const drawer=document.getElementById('drawer'), shade=document.getElementById('shade'), modal=document.getElementById('loginModal');
+function openMenu(){drawer.classList.add('open');shade.style.display='block'}
+function closeMenu(){drawer.classList.remove('open');shade.style.display='none'}
+function openLogin(){modal.classList.add('open')}
+function closeLogin(){modal.classList.remove('open')}
+document.getElementById('menuOpen').onclick=openMenu;
+document.getElementById('menuClose').onclick=closeMenu;
+shade.onclick=closeMenu;
+document.getElementById('loginOpen').onclick=openLogin;
+document.getElementById('bottomLogin').onclick=openLogin;
+document.getElementById('drawerLogin').onclick=()=>{closeMenu();openLogin()};
+document.getElementById('loginClose').onclick=closeLogin;
+modal.addEventListener('click',e=>{if(e.target===modal)closeLogin()});
+let toastTimer;
+function showNotice(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1800)}

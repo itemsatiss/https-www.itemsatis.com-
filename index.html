@@ -1,81 +1,101 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>ItemSatış</title>
+<title>İtemSatış</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="site">
+  <header class="top" aria-label="Üst menü">
+    <img src="assets/top-header.jpg" class="header-reference" alt="İtemSatış üst bölüm">
+    <button class="hit menu-hit" id="menuOpen" aria-label="Menü"></button>
+    <button class="hit login-hit" id="loginOpen" aria-label="Giriş yap"></button>
+  </header>
 
-<div class="top-ad">
-  <span>🎮</span>
-  <div><b>PUBG UC</b><small>Hızlı teslimat, güvenli alışveriş.</small></div>
+  <section class="hero-wrap">
+    <div class="hero-card">
+      <img src="assets/hero-roblox.jpg" alt="Roblox İlan Pazarı" class="hero-img">
+      <button class="hero-buy" onclick="showNotice('İlan Pazarı açılıyor')">🛒 <span>Alışverişe Başla</span></button>
+      <div class="slider-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="quick-reference">
+    <img src="assets/quick-categories.jpg" alt="Hızlı kategoriler" class="quick-img">
+    <div class="quick-hotspots">
+      <button onclick="showNotice('Tüm kategoriler')" style="left:4%;width:22%"> </button>
+      <button onclick="showNotice('Hesap Satışı')" style="left:27%;width:22%"> </button>
+      <button onclick="showNotice('Item & Skin')" style="left:51%;width:22%"> </button>
+      <button onclick="showNotice('ID Yükleme')" style="left:75%;width:22%"> </button>
+    </div>
+  </section>
+
+  <section class="filters">
+    <button class="filter active">☷ &nbsp; Tümü</button>
+    <button class="filter">◉ &nbsp; Steam</button>
+    <button class="filter">◎ &nbsp; Instagram</button>
+    <button class="filter">◉ &nbsp; Discord</button>
+    <button class="filter">◉ &nbsp; Steam Random Key</button>
+  </section>
+
+  <section class="showcase">
+    <div class="show-title">VİTRİN İLANI</div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <button class="support" onclick="showNotice('Destek sistemi açılıyor')">◉</button>
+
+  <nav class="bottom-nav">
+    <button><b>⌂</b><span>Anasayfa</span></button>
+    <button onclick="document.querySelector('.showcase').scrollIntoView({behavior:'smooth'})"><b>♧</b><span>İlan Pazarı</span></button>
+    <button onclick="document.querySelector('.quick-reference').scrollIntoView({behavior:'smooth'})"><b>▦</b><span>Kategoriler</span></button>
+    <button onclick="showNotice('Destek sistemi açılıyor')"><b>◉</b><span>Destek</span></button>
+    <button id="bottomLogin"><b>◎</b><span>Giriş Yap</span></button>
+  </nav>
 </div>
 
-<header>
-  <button class="icon-btn" id="menuBtn">☰</button>
-  <div class="brand">item<span>satış</span></div>
-  <button class="icon-btn">◯</button>
-</header>
-
-<div class="searchbar">
-  <span>⌕</span>
-  <input id="q" placeholder="Buraya tıklayarak arama yap...">
-</div>
-
-<main>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <span class="hero-tag">PUBG</span>
-    <h1>Uygun fiyatlı<br><b>PUBG ürünleri</b></h1>
-    <p>UC, hesap ve dijital ürünleri keşfet.</p>
-    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🛒 Alışverişe Başla</button>
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-top">
+    <button id="menuClose">×</button><strong>item<span>satış</span></strong><button id="drawerLogin">◎</button>
   </div>
-  <div class="dots"><i class="active"></i><i></i><i></i><i></i><i></i></div>
-</section>
-
-<section class="quick" id="games">
-  <button onclick="game('all')"><b>▦</b><span>Tüm Kategoriler</span></button>
-  <button onclick="game('PUBG')"><b>🪖</b><span>PUBG</span></button>
-  <button onclick="game('Valorant')"><b>🎯</b><span>Valorant</span></button>
-  <button onclick="game('Minecraft')"><b>⛏️</b><span>Minecraft</span></button>
-  <button onclick="game('Roblox')"><b class="roblox-icon"><img src="https://cdn.itemsatis.com/uploads/category_images/roblox-504.png?sharpen=true&width=80" alt="Roblox"></b><span>Roblox</span></button>
-</section>
-
-<section id="products">
-  <div class="section-head">
-    <h2>Öne Çıkan Ürünler</h2>
-    <button onclick="game('all')">Tümü →</button>
+  <div class="drawer-actions"><button>＋ &nbsp; İlan Ekle</button><button>♧ &nbsp; İlan Pazarı</button></div>
+  <div class="drawer-list">
+    <button>⌂ <span>Anasayfa</span><small>₺ &nbsp; TRY &nbsp; 🇹🇷 EN</small></button>
+    <button>◉ <span>Destek Sistemi</span></button>
+    <button>◌ <span>Haftanın Fırsatları</span></button>
+    <button class="yellow">🎟 <span>Ücretsiz Çekilişler</span></button>
+    <button>⚑ <span>Güncel Duyurular</span></button>
+    <button>♟ <span>Topluluk</span></button>
+    <button>🎮 <span>Yayıncılar</span></button>
+    <button>▣ <span>Mağazalar</span></button>
+    <button>🛒 <span>Alım İlanları</span></button>
+    <button>⚿ <span>CD-Key</span></button>
+    <button>🎮 <span>Top-Up</span></button>
+    <button>🎁 <span>Hediye Kartları</span></button>
   </div>
-  <div id="grid" class="grid"></div>
-</section>
+</aside>
 
-</main>
-
-<div id="drawer" class="drawer">
-  <button onclick="closeMenu()">✕</button>
-  <h2>Kategoriler</h2>
-  <a onclick="game('PUBG')">🪖 PUBG</a>
-  <a onclick="game('Valorant')">🎯 Valorant</a>
-  <a onclick="game('Minecraft')">⛏️ Minecraft</a>
-  <a onclick="game('Roblox')">🧱 Roblox</a>
-  <a onclick="game('CS2')">🔫 CS2</a>
-  <a onclick="game('LoL')">⚔️ LoL</a>
+<div class="modal" id="loginModal">
+  <div class="login-box">
+    <button class="modal-close" id="loginClose">×</button>
+    <h2>Giriş Yap</h2>
+    <p>Aşağıdaki seçeneklerden hızlıca giriş yapabilirsiniz.</p>
+    <div class="socials"><button class="google">G</button><button class="facebook">f</button><button class="discord">☯</button><button class="steam">◉</button></div>
+    <div class="or"><i></i><span>veya</span><i></i></div>
+    <label>Kullanıcı Adı / Mail / Telefon <a>Kullanıcı adımı unuttum</a></label>
+    <input>
+    <label>Parola <a>Şifremi unuttum</a></label>
+    <div class="password"><input type="password"><button>◉</button></div>
+    <button class="login-submit" onclick="showNotice('Demo giriş: gerçek hesap bağlantısı henüz eklenmedi')">Giriş Yap</button>
+    <strong class="help">Mail ve telefon numarama erişimim yok</strong>
+    <p class="signup">Hala bir üyeliğiniz yok mu? <b>Hemen ücretsiz üye ol</b></p>
+  </div>
 </div>
 
-<button class="support-float" onclick="support()">💬</button>
-
-<nav class="bottom-nav">
-  <button><b>⌂</b><span>Anasayfa</span></button>
-  <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><b>▣</b><span>İlan Pazarı</span></button>
-  <button onclick="document.getElementById('games')?.scrollIntoView()"><b>▦</b><span>Kategoriler</span></button>
-  <button onclick="support()"><b>◉</b><span>Destek</span></button>
-  <button><b>◯</b><span>Giriş Yap</span></button>
-</nav>
-
+<div class="toast" id="toast"></div>
 <script src="app.js"></script>
 </body>
 </html>
