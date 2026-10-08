@@ -83,3 +83,47 @@ body{padding-bottom:88px!important}
 @media(min-width:760px){
   .bottom-nav{max-width:709px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important}
 }
+
+/* FINAL: ORIGINAL ITEMSATIS MOBILE BOTTOM BAR */
+.bottom-nav{
+  position:fixed!important;left:0!important;right:0!important;bottom:0!important;
+  z-index:9999!important;
+  height:76px!important;min-height:76px!important;max-height:76px!important;
+  box-sizing:border-box!important;
+  display:grid!important;grid-template-columns:repeat(5,1fr)!important;
+  align-items:stretch!important;
+  padding:4px 0 5px!important;
+  background:#30334b!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:none!important;
+}
+.bottom-nav button,
+.bottom-nav .bottom-item{
+  width:100%!important;height:100%!important;
+  margin:0!important;padding:0!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  gap:4px!important;
+  background:transparent!important;border:0!important;
+  color:#e9e9f0!important;
+}
+.bottom-nav svg{
+  display:block!important;
+  width:28px!important;height:28px!important;
+  min-width:28px!important;min-height:28px!important;
+  max-width:28px!important;max-height:28px!important;
+  fill:none!important;stroke:currentColor!important;
+  stroke-width:2.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+.bottom-nav span{
+  display:block!important;margin:0!important;padding:0!important;
+  font-size:14px!important;line-height:16px!important;
+  font-weight:400!important;white-space:nowrap!important;
+  color:#e9e9f0!important;
+}
+body{padding-bottom:82px!important}
+.support{bottom:90px!important}
+.showcase{padding-bottom:92px!important}
+@media (min-width:760px){
+  .bottom-nav{max-width:709px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important}
+}
