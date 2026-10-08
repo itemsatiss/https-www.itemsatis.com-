@@ -449,96 +449,186 @@ accountCSS.textContent = `
 @media(max-width:520px){
 
   .account-dashboard{
-    gap:16px;
-    margin-top:4px;
-  }
-
-  .account-profile-card{
-    min-height:115px;
-    padding:17px;
-    gap:12px;
-    border-radius:16px;
-  }
-
-  .account-profile-avatar{
-    width:58px;
-    height:58px;
-    font-size:27px;
-  }
-
-  .account-profile-name{
-    font-size:17px;
-  }
-
-  .account-profile-link{
-    font-size:15px;
-    margin-top:4px;
-  }
-
-  .account-wallet{
+  width:100%;
   display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:8px 0 20px;
+  box-sizing:border-box;
+}
+
+.account-profile-card{
+  width:100%;
+  min-height:120px;
+  padding:16px;
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) 125px;
   align-items:center;
   gap:10px;
-  flex:0 1 auto;
+  box-sizing:border-box;
+  border-radius:16px;
+  background:#454d7b;
+  overflow:hidden;
+}
+
+.account-profile-avatar{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:#08735f;
+  color:#fff;
+  font-size:27px;
+}
+
+.account-profile-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.account-profile-info{
   min-width:0;
+  overflow:hidden;
 }
 
-  .account-wallet-icon{
-    font-size:40px;
-  }
-
-  .account-balance{
-    min-width:95px;
-  }
-
-  .account-balance b{
-    font-size:20px;
-  }
-
-  .account-balance div:last-child{
-    font-size:15px;
-  }
-
-  .account-withdrawable{
-    min-height:105px;
-    padding:18px;
-    gap:15px;
-    border-radius:16px;
-  }
-
-  .account-withdrawable-icon{
-    width:45px;
-    font-size:38px;
-  }
-
-  .account-withdrawable b{
-    font-size:21px;
-  }
-
-  .account-withdrawable span{
-    font-size:16px;
-  }
-
-  .account-verify{
-    height:65px;
-    font-size:19px;
-  }
-
-  .account-money-buttons{
-    gap:12px;
-  }
-
-  .account-money-buttons button{
-    height:65px;
-    border-radius:15px;
-    font-size:17px;
-  }
-
-  .account-add-listing{
-    height:65px;
-    font-size:20px;
-  }
+.account-profile-name{
+  color:#fff;
+  font-size:18px;
+  font-weight:400;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
+
+.account-profile-link{
+  margin-top:4px;
+  color:#aebcff;
+  font-size:15px;
+}
+
+.account-wallet{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:7px;
+  overflow:hidden;
+}
+
+.account-wallet-icon{
+  flex:none;
+  font-size:38px;
+  color:#d4dcff;
+}
+
+.account-balance{
+  min-width:0;
+  overflow:hidden;
+  text-align:right;
+}
+
+.account-balance b{
+  display:block;
+  color:#fff;
+  font-size:19px;
+  font-weight:400;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.account-balance div:last-child{
+  margin-top:4px;
+  color:#aebcff;
+  font-size:15px;
+  white-space:nowrap;
+}
+
+.account-withdrawable{
+  width:100%;
+  min-height:105px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-sizing:border-box;
+  border-radius:16px;
+  background:#39537f;
+}
+
+.account-withdrawable-icon{
+  width:45px;
+  flex:none;
+  text-align:center;
+  color:#dbe3ff;
+  font-size:38px;
+}
+
+.account-withdrawable b{
+  color:#fff;
+  font-size:21px;
+  font-weight:400;
+}
+
+.account-withdrawable span{
+  display:block;
+  margin-top:5px;
+  color:#9ecbff;
+  font-size:16px;
+}
+
+.account-verify{
+  width:100%;
+  height:65px;
+  border:0;
+  border-radius:15px;
+  background:#2864df;
+  color:#fff;
+  font-size:19px;
+  font-weight:400;
+}
+
+.account-money-buttons{
+  width:100%;
+  display:grid;
+  grid-template-columns:1.25fr .9fr;
+  gap:12px;
+}
+
+.account-money-buttons button{
+  width:100%;
+  height:65px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:17px;
+  font-weight:400;
+}
+
+.account-add-money{
+  background:#5144d7;
+}
+
+.account-withdraw{
+  background:#2864df;
+}
+
+.account-add-listing{
+  width:100%;
+  height:65px;
+  border:0;
+  border-radius:15px;
+  background:#6265ed;
+  color:#fff;
+  font-size:20px;
+  font-weight:400;
+}
+
+  
 .account-menu{
   display:flex;
   flex-direction:column;
