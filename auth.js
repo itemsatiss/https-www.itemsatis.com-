@@ -298,7 +298,7 @@ accountCSS.textContent = `
 .account-profile-name{
   color:#fff;
   font-size:24px;
-  font-weight:500;
+  font-weight:400;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -603,7 +603,7 @@ accountCSS.textContent = `
   background:#874052;
   color:#ffb1b8;
   font-size:17px;
-  font-weight:600;
+  font-weight:400;
 }
 
 .account-logout-menu:active{
