@@ -55,47 +55,9 @@ accountPanel.innerHTML = `
 
       <button class="account-close" type="button">×</button>
     </div>
-    <div class="account-dashboard">
+    
 
-      <div class="account-profile-card">
-        <div class="account-profile-avatar">👤</div>
-
-        <div class="account-profile-info">
-          <div class="account-profile-name">Hesabım</div>
-          <div class="account-profile-link">Profili Gör</div>
-        </div>
-
-        <div class="account-wallet">
-          <div class="account-wallet-icon">▱</div>
-          <div class="account-balance">
-            <div><b>0,00 ₺</b></div>
-            <div>Bakiyeniz</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="account-withdrawable">
-        <div class="account-withdrawable-icon">⇩</div>
-        <div>
-          <div><b>0,00 ₺</b></div>
-          <span>Çekilebilir Bakiye</span>
-        </div>
-      </div>
-
-      <button class="account-verify">
-        🛡️ <span>Kimlik Doğrula</span>
-      </button>
-
-      <div class="account-money-buttons">
-        <button class="account-add-money">💵 &nbsp; Bakiye Yükle</button>
-        <button class="account-withdraw">⇩ &nbsp; Para Çek</button>
-      </div>
-
-      <button class="account-add-listing">
-        ＋ &nbsp; İlan Ekle
-      </button>
-
-    </div>
+      
     <div class="account-menu">
 
       <button class="account-menu-item">
