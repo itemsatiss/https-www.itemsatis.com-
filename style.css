@@ -695,4 +695,103 @@ font-weight:600!important;
     color:#f0f1f5!important;
   }
 }
+/* CANLI DESTEK TASARIMI */
+#supportChatOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(5, 7, 18, 0.78);
+  backdrop-filter: blur(8px);
+}
 
+.support-chat-panel {
+  width: 100%;
+  max-width: 709px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #303249;
+  color: #fff;
+  border-radius: 24px 24px 0 0;
+  box-sizing: border-box;
+}
+
+.support-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  background: #24263b;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.support-chat-header div {
+  flex: 1;
+}
+
+.support-chat-header b {
+  display: block;
+  font-size: 18px;
+}
+
+.support-chat-header span {
+  display: block;
+  margin-top: 4px;
+  color: #a8b0c8;
+  font-size: 13px;
+}
+
+.support-chat-header button {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 30px;
+}
+
+.support-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+}
+
+.support-welcome {
+  padding: 14px;
+  border-radius: 14px;
+  background: #41445f;
+  line-height: 1.6;
+}
+
+.support-input-area {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  background: #24263b;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
+}
+
+.support-input-area input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #4b4e6b;
+  border-radius: 13px;
+  outline: none;
+  background: #303249;
+  color: #fff;
+  font-size: 16px;
+}
+
+.support-input-area button {
+  width: 50px;
+  height: 48px;
+  border: 0;
+  border-radius: 13px;
+  background: #5865ed;
+  color: #fff;
+  font-size: 22px;
+}
