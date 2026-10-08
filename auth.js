@@ -366,7 +366,10 @@ document.head.appendChild(accountCSS);
   }
 
   
-  googleBtn.addEventListener("click", () => oauth("google"));
+  googleBtn.addEventListener("click", () => {
+  alert("GOOGLE BUTON ÇALIŞTI");
+  oauth("google");
+});
 
   
 
