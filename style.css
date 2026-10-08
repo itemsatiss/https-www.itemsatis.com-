@@ -535,4 +535,51 @@ font-weight:600!important;
   .search-glass{
     font-size:26px!important;
   }
+}/* ORİJİNAL ITEMSATIŞ MOBİL ÜST DÜZEN */
+@media (max-width:520px){
+
+  .top{
+    height:56px!important;
+    min-height:56px!important;
+    padding:0 16px!important;
+    margin:0!important;
+  }
+
+  .header-reference{
+    max-height:34px!important;
+    width:auto!important;
+  }
+
+  .reference-search{
+    height:50px!important;
+    min-height:50px!important;
+    margin:0!important;
+    padding:0 18px!important;
+    gap:12px!important;
+    border-radius:0!important;
+    box-sizing:border-box!important;
+
+    background:rgba(70,74,105,.48)!important;
+    border:0!important;
+    backdrop-filter:blur(20px)!important;
+    -webkit-backdrop-filter:blur(20px)!important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.05),
+      0 1px 8px rgba(0,0,0,.10)!important;
+  }
+
+  .search-glass{
+    font-size:26px!important;
+    line-height:1!important;
+  }
+
+  .hero-wrap{
+    margin-top:0!important;
+    padding-top:10px!important;
+  }
+
+  .hero-card{
+    margin-top:0!important;
+    border-radius:10px!important;
+  }
 }
