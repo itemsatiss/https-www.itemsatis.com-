@@ -687,4 +687,17 @@ font-weight:600!important;
 .reference-search{
   background:transparent!important;
   color:rgba(238,240,247,.72)!important;
-  border:0
+  border:0/* ARAMA ÇUBUĞU - GERÇEKTEN ŞEFFAF */
+.reference-search{
+  background:transparent!important;
+  color:rgba(238,240,247,.72)!important;
+  border:0/* ARAMA ALANI ARKASINI DA ŞEFFAF YAP */
+@media(max-width:520px){
+  .top{
+    background:transparent!important;
+  }
+
+  .reference-search{
+    background:transparent!important;
+  }
+}
