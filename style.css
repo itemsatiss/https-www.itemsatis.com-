@@ -663,54 +663,30 @@ font-weight:600!important;
     height:82px!important;
     min-height:82px!important;
   }
-/* SEARCH — ORİJİNAL ITEMSATIS SAYDAM GÖRÜNÜM */
+/* ARAMA */
 .reference-search{
-  background:rgba(58,62,88,.18)!important;
-  color:rgba(238,240,247,.78)!important;
+  background:transparent!important;
   border:0!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important;
-  backdrop-filter:blur(18px)!important;
-  -webkit-backdrop-filter:blur(18px)!important;
+  box-shadow:none!important;
 }
 
-.reference-search > span:last-child{
-  color:rgba(238,240,247,.78)!important;
-}
-
-@media(max-width:520px){
-  .reference-search{
-    background:rgba(58,62,88,.18)!important;
-    backdrop-filter:blur(18px)!important;
-    -webkit-backdrop-filter:blur(18px)!important;
-  }
-/* ARAMA ÇUBUĞU - GERÇEKTEN ŞEFFAF */
-.reference-search{
-  background:transparent!important;
-  color:rgba(238,240,247,.72)!important;
-  border:0/* ARAMA ÇUBUĞU - GERÇEKTEN ŞEFFAF */
-.reference-search{
-  background:transparent!important;
-  color:rgba(238,240,247,.72)!important;
-  border:0/* ARAMA ALANI ARKASINI DA ŞEFFAF YAP */
-@media(max-width:520px){
-  .top{
-    background:transparent!important;
-  }
-
-  .reference-search{
-    background:transparent!important;
-  }
-}/* ARAMA ÇUBUĞU - ALT ZEMİNİ DE DÜZELT */
 @media(max-width:520px){
   .site{
     background:#282b3e!important;
   }
 
   .reference-search{
-    background:rgba(40,43,62,.18)!important;
-    border:0!important;
-    box-shadow:none!important;
-    backdrop-filter:blur(14px)!important;
-    -webkit-backdrop-filter:blur(14px)!important;
+    height:50px!important;
+    background:transparent!important;
+    color:#dfe1eb!important;
+  }
+
+  .reference-search > span:last-child{
+    color:#dfe1eb!important;
+  }
+
+  .search-glass{
+    color:#f0f1f5!important;
   }
 }
+
