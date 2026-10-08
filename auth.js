@@ -994,6 +994,109 @@ function openSupportChat() {
   `;
 
   document.body.appendChild(overlay);
+    const chatClient = window.supabase.createClient(
+    window.ITEMSATIS_SUPABASE_URL,
+    window.ITEMSATIS_SUPABASE_ANON_KEY
+  );
+
+  const messagesBox = document.getElementById("supportMessages");
+  const input = document.getElementById("supportInput");
+  const sendBtn = document.getElementById("supportSend");
+
+  let chatUser = null;
+  let lastMessageId = 0;
+
+  async function loadSupportMessages() {
+    if (!chatUser) return;
+
+    const { data, error } = await chatClient
+      .from("support_messages")
+      .select("*")
+      .eq("user_id", chatUser.id)
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      console.error("Destek mesajları:", error.message);
+      return;
+    }
+
+    messagesBox.innerHTML = "";
+
+    if (!data.length) {
+      messagesBox.innerHTML =
+        '<div class="support-welcome">Merhaba 👋<br>Size nasıl yardımcı olabiliriz?</div>';
+      return;
+    }
+
+    data.forEach((item) => {
+      const bubble = document.createElement("div");
+      bubble.textContent =
+        (item.sender === "support" ? "Destek: " : "Siz: ") +
+        item.message;
+
+      bubble.style.cssText = `
+        margin:10px 0;
+        padding:12px;
+        border-radius:12px;
+        background:${item.sender === "support" ? "#41445f" : "#5144d7"};
+        color:white;
+        overflow-wrap:anywhere;
+      `;
+
+      messagesBox.appendChild(bubble);
+      lastMessageId = Math.max(lastMessageId, Number(item.id) || 0);
+    });
+
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+
+  async function sendSupportMessage() {
+    const message = input.value.trim();
+
+    if (!message || !chatUser) return;
+
+    sendBtn.disabled = true;
+
+    const { error } = await chatClient
+      .from("support_messages")
+      .insert({
+        user_id: chatUser.id,
+        sender: "user",
+        message
+      });
+
+    sendBtn.disabled = false;
+
+    if (error) {
+      alert("Mesaj gönderilemedi: " + error.message);
+      return;
+    }
+
+    input.value = "";
+    await loadSupportMessages();
+  }
+
+  chatClient.auth.getUser().then(({ data, error }) => {
+    if (error || !data.user) {
+      messagesBox.textContent = "Canlı desteği kullanmak için giriş yapmalısınız.";
+      return;
+    }
+
+    chatUser = data.user;
+    loadSupportMessages();
+
+    setInterval(() => {
+      if (document.getElementById("supportChatOverlay")) {
+        loadSupportMessages();
+      }
+    }, 3000);
+  });
+
+  sendBtn.onclick = sendSupportMessage;
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") sendSupportMessage();
+  });
 
   document.getElementById("supportClose").onclick = () => {
     overlay.remove();
