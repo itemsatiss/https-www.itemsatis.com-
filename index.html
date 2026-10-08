@@ -257,9 +257,7 @@
   let current = 0;
   let timer;
 
-  dotsBox.innerHTML = slides.map((_,i)=>
-    '<i class="'+(i===0?'on':'')+'" data-slide="'+i+'"></i>'
-  ).join('');
+dotsBox.innerHTML = '';
 
   const dots = dotsBox.querySelectorAll('i');
 
