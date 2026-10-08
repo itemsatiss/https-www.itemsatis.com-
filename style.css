@@ -665,22 +665,28 @@ font-weight:600!important;
   }
 /* ARAMA */
 .reference-search{
-  background:transparent!important;
+  background:rgba(43,46,68,.88)!important;
   border:0!important;
-  box-shadow:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
 }
 
 @media(max-width:520px){
-  .site{
-    background:#282b3e!important;
-  }
-
   .reference-search{
     height:50px!important;
-    background:transparent!important;
-    color:#dfe1eb!important;
+    background:rgba(43,46,68,.88)!important;
+    color:#e5e6ed!important;
   }
 
+  .reference-search > span:last-child{
+    color:#e5e6ed!important;
+  }
+
+  .search-glass{
+    color:#f1f2f6!important;
+  }
+}
   .reference-search > span:last-child{
     color:#dfe1eb!important;
   }
