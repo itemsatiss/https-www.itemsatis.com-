@@ -428,4 +428,60 @@ body{
 
 .auth-box .auth-status{
   font-size:13px!important;
+}/* GİRİŞ EKRANI */
+.login-box.auth-box{
+width:calc(100% - 28px)!important;
+max-width:500px!important;
+padding:28px 24px 24px!important;
+border-radius:14px!important;
+background:#20283a!important;
+color:#fff!important;
+}
+
+.auth-box #authTitle{
+font-size:25px!important;
+font-weight:700!important;
+margin:0 0 8px!important;
+}
+
+.auth-box #authSubtitle{
+font-size:14px!important;
+color:#aeb6c8!important;
+margin:0 0 22px!important;
+}
+
+.auth-socials{
+display:grid!important;
+grid-template-columns:repeat(4,1fr)!important;
+gap:10px!important;
+}
+
+.auth-socials button{
+height:54px!important;
+border-radius:10px!important;
+border:0!important;
+font-size:25px!important;
+}
+
+.auth-socials .google{background:#db4437!important;color:#fff!important}
+.auth-socials .facebook{background:#1877f2!important;color:#fff!important}
+.auth-socials .discord{background:#5865f2!important;color:#fff!important}
+.auth-socials .steam{background:#111820!important;color:#fff!important}
+
+.auth-box input{
+height:48px!important;
+background:#171e2d!important;
+border:1px solid #3f485b!important;
+border-radius:9px!important;
+color:#fff!important;
+}
+
+.auth-box .login-submit{
+height:50px!important;
+background:#4885be!important;
+border:0!important;
+border-radius:9px!important;
+color:#fff!important;
+font-size:16px!important;
+font-weight:600!important;
 }
