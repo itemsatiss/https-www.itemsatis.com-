@@ -480,7 +480,7 @@ async function loadWallet(user) {
   } catch (err) {
     console.error("Wallet load error:", err);
   }
-}
+}function updateUser(user) {
     window.ITEMSATIS_AUTH_USER = user || null;
     const label = document.querySelector("#bottomLogin span");
     if (label) label.textContent = user ? "Hesabım" : "Giriş Yap";
