@@ -38,7 +38,210 @@
     password.setAttribute("autocomplete", signup ? "new-password" : "current-password");
     msg("");
   }
+  const accountPanel = document.createElement("div");
 
+  accountPanel.innerHTML = `
+    <div class="account-panel">
+      <button class="account-close">×</button>
+
+      <div class="account-user">
+        <div class="account-avatar">👤</div>
+        <div>
+          <h2 class="account-name">Hesabım</h2>
+          <p class="account-email"></p>
+        </div>
+      </div>
+
+      <div class="account-balance">
+        <div>
+          <b>0,00 ₺</b>
+          <span>Bakiye</span>
+        </div>
+        <div>
+          <b>0,00 ₺</b>
+          <span>Çekilebilir Bakiye</span>
+        </div>
+      </div>
+
+      <button class="account-action verify">🪪　Kimlik Doğrula</button>
+
+      <div class="account-two">
+        <button class="account-action">💳　Bakiye Yükle</button>
+        <button class="account-action">💸　Para Çek</button>
+      </div>
+
+      <button class="account-action add-listing">＋　İlan Ekle</button>
+      <button class="account-action">⚙️　Kontrol Merkezi</button>
+    </div>
+  `;
+
+  const accountOverlay = document.createElement("div");
+  accountOverlay.className = "account-overlay";
+  accountOverlay.appendChild(accountPanel.firstElementChild);
+  document.body.appendChild(accountOverlay);
+
+  const accountCSS = document.createElement("style");
+  accountCSS.textContent = `
+    .account-overlay{
+      position:fixed;
+      inset:0;
+      z-index:999999;
+      display:none;
+      align-items:flex-end;
+      background:rgba(0,0,0,.65);
+    }
+
+    .account-overlay.open{
+      display:flex;
+    }
+
+    .account-panel{
+      width:100%;
+      box-sizing:border-box;
+      padding:24px 18px 30px;
+      background:#292c42;
+      color:white;
+      border-radius:26px 26px 0 0;
+    }
+
+    .account-close{
+      float:right;
+      border:0;
+      background:#41465f;
+      color:white;
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      font-size:27px;
+    }
+
+    .account-user{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin:8px 0 22px;
+    }
+
+    .account-avatar{
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#454a68;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+    }
+
+    .account-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .account-name{
+      margin:0 0 4px;
+      font-size:22px;
+    }
+
+    .account-email{
+      margin:0;
+      color:#b8c0e8;
+      font-size:13px;
+    }
+
+    .account-balance{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .account-balance div{
+      padding:18px 14px;
+      background:#414765;
+      border-radius:15px;
+    }
+
+    .account-balance b{
+      display:block;
+      font-size:21px;
+    }
+
+    .account-balance span{
+      display:block;
+      margin-top:5px;
+      color:#b8c0e8;
+      font-size:13px;
+    }
+
+    .account-action{
+      width:100%;
+      min-height:54px;
+      border:0;
+      border-radius:14px;
+      margin-top:10px;
+      background:#3b405b;
+      color:white;
+      font-size:16px;
+      font-weight:500;
+    }
+
+    .account-action.verify{
+      background:#2867dc;
+      min-height:62px;
+    }
+
+    .account-two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .account-action.add-listing{
+      background:#5557e8;
+      min-height:58px;
+    }
+  `;
+  document.head.appendChild(accountCSS);
+
+  function openAccountPanel(){
+    if(!window.ITEMSATIS_AUTH_USER) return;
+    
+    const user = window.ITEMSATIS_AUTH_USER;
+    const emailEl = accountOverlay.querySelector(".account-email");
+    const nameEl = accountOverlay.querySelector(".account-name");
+    const avatarEl = accountOverlay.querySelector(".account-avatar");
+
+    emailEl.textContent = user.email || "Hesabınız";
+
+    nameEl.textContent =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      "Hesabım";
+
+    const avatar =
+      user.user_metadata?.avatar_url ||
+      user.user_metadata?.picture;
+
+    avatarEl.innerHTML = avatar
+      ? '<img src="' + avatar + '" alt="Profil">'
+      : "👤";
+
+    accountOverlay.classList.add("open");
+  }
+
+  window.itemsatisOpenProfile = openAccountPanel;
+
+  accountOverlay.addEventListener("click", (e) => {
+    if(
+      e.target === accountOverlay ||
+      e.target.closest(".account-close")
+    ){
+      accountOverlay.classList.remove("open");
+    }
+  });
   function openAuth() {
   if (
     window.ITEMSATIS_AUTH_USER &&
