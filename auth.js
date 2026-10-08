@@ -111,11 +111,11 @@ accountPanel.innerHTML = `
 </div>
     <div class="account-menu">
 
-      <button class="account-menu-item">
-        <span class="account-menu-icon">⚙</span>
-        <span>Kontrol Merkezi</span>
-        <b>›</b>
-      </button>
+      <button class="account-menu-item" id="supportOpen" type="button">
+  <span class="account-menu-icon">◉</span>
+  <span>Destek Sistemi</span>
+  <b>›</b>
+</button>
 
       <button class="account-menu-item">
         <span class="account-menu-icon">▣</span>
