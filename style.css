@@ -8,3 +8,10 @@
 .bottom-nav span{font-size:11px!important;line-height:1!important;margin-top:1px!important;letter-spacing:-.2px!important}
 .support{width:42px!important;height:42px!important;right:12px!important;bottom:68px!important;font-size:19px!important}
 .showcase{padding-bottom:75px!important}
+
+/* EXACT REFERENCE BOTTOM BAR */
+.bottom-nav{height:15vw!important;min-height:58px!important;max-height:120px!important;padding:0!important;background:linear-gradient(180deg,#30344f 0%,#292d45 100%)!important;}
+.bottom-nav button{gap:1px!important;padding:0!important;}
+.bottom-nav svg{width:8.2vw!important;height:8.2vw!important;max-width:66px!important;max-height:66px!important;min-width:30px!important;min-height:30px!important;stroke-width:2.7!important;}
+.bottom-nav span{font-size:3.9vw!important;max-font-size:34px;line-height:1!important;margin-top:0!important;letter-spacing:-.2px!important;}
+@media(max-width:520px){.bottom-nav{height:15.2vw!important;max-height:64px!important;min-height:58px!important}.bottom-nav svg{width:8vw!important;height:8vw!important;min-width:29px!important;min-height:29px!important}.bottom-nav span{font-size:3.7vw!important;}}
