@@ -330,37 +330,7 @@
     msg("Çıkış yapıldı.", "ok");
   });
 async function loadWallet(user) {
-  if (!supabase || !user || !accountOverlay) return;
 
-  const { data, error } = await supabase
-    .from("wallets")
-    .select("balance, withdrawable_balance")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (error) {
-    console.error("Wallet error:", error);
-    return;
-  }
-
-  const balances = accountOverlay.querySelectorAll(
-    ".account-balance div b"
-  );
-
-  if (balances[0]) {
-    balances[0].textContent =
-      Number(data?.balance || 0)
-        .toFixed(2)
-        .replace(".", ",") + " ₺";
-  }
-
-  if (balances[1]) {
-    balances[1].textContent =
-      Number(data?.withdrawable_balance || 0)
-        .toFixed(2)
-        .replace(".", ",") + " ₺";
-  }
-}
   if (!supabase || !user || !accountOverlay) return;
 
   const { data, error } = await supabase
