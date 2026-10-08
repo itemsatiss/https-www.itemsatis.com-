@@ -40,7 +40,75 @@
   }
   const accountPanel = document.createElement("div");
 
-  accountPanel.innerHTML = `
+accountPanel.innerHTML = `
+  <div class="account-panel">
+
+    <div class="account-head">
+      <div class="account-user">
+        <div class="account-avatar">👤</div>
+
+        <div class="account-user-text">
+          <div class="account-name">Hesabım</div>
+          <div class="account-email"></div>
+        </div>
+      </div>
+
+      <button class="account-close" type="button">×</button>
+    </div>
+
+    <div class="account-menu">
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">⚙</span>
+        <span>Kontrol Merkezi</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">▣</span>
+        <span>Üyelik Paketleri</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">🛒</span>
+        <span>Siparişlerim</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">▤</span>
+        <span>İlanlarım</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">▥</span>
+        <span>Sattığım İlanlar</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">🛒</span>
+        <span>Sepetim</span>
+        <b>›</b>
+      </button>
+
+      <button class="account-menu-item">
+        <span class="account-menu-icon">◉</span>
+        <span>Destek Sistemi</span>
+        <b>›</b>
+      </button>
+
+    </div>
+
+    <button class="account-logout-menu" type="button">
+      <span>↪</span>
+      <span>Çıkış Yap</span>
+    </button>
+
+  </div>
+`;
     <div class="account-panel">
       <button class="account-close">×</button>
 
