@@ -313,7 +313,36 @@ accountCSS.textContent = `
 .account-wallet{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:10px;
+  flex:0 1 auto;
+  min-width:0;
+}
+
+.account-wallet-icon{
+  font-size:42px;
+  color:#d4dcff;
+  flex:none;
+}
+
+.account-balance{
+  min-width:0;
+  width:auto;
+  text-align:right;
+  overflow:hidden;
+}
+
+.account-balance b{
+  color:#fff;
+  font-size:20px;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.account-balance div:last-child{
+  margin-top:5px;
+  color:#aebcff;
+  font-size:15px;
+  white-space:nowrap;
 }
 
 .account-wallet-icon{
@@ -447,8 +476,12 @@ accountCSS.textContent = `
   }
 
   .account-wallet{
-    gap:8px;
-  }
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 1 auto;
+  min-width:0;
+}
 
   .account-wallet-icon{
     font-size:40px;
