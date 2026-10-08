@@ -330,37 +330,54 @@
     msg("Çıkış yapıldı.", "ok");
   });
 async function loadWallet(user) {
+  if (!user || !accountOverlay) return;
 
-  if (!supabase || !user || !accountOverlay) return;
+  try {
+    const client = supabase;
 
-  const { data, error } = await supabase
-    .from("wallets")
-    .select("balance, withdrawable_balance")
-    .eq("user_id", user.id)
-    .maybeSingle();
+    if (!client) return;
 
-  if (error) {
-    console.error("Wallet error:", error);
-    return;
-  }
+    const { data: currentUser } = await client.auth.getUser();
 
-  const balances = accountOverlay.querySelectorAll(
-    ".account-balance div b"
-  );
+    const userId = currentUser?.user?.id || user.id;
 
-  if (balances[0]) {
-    balances[0].textContent =
-      Number(data?.balance || 0).toFixed(2).replace(".", ",") + " ₺";
-  }
+    const { data, error } = await client
+      .from("wallets")
+      .select("balance, withdrawable_balance")
+      .eq("user_id", userId)
+      .maybeSingle();
 
-  if (balances[1]) {
-    balances[1].textContent =
+    if (error) {
+      console.error("Wallet error:", error);
+      return;
+    }
+
+    const balances = accountOverlay.querySelectorAll(
+      ".account-balance div b"
+    );
+
+    const balance =
+      Number(data?.balance || 0)
+        .toFixed(2)
+        .replace(".", ",") + " ₺";
+
+    const withdrawable =
       Number(data?.withdrawable_balance || 0)
         .toFixed(2)
         .replace(".", ",") + " ₺";
+
+    if (balances[0]) {
+      balances[0].textContent = balance;
+    }
+
+    if (balances[1]) {
+      balances[1].textContent = withdrawable;
+    }
+
+  } catch (err) {
+    console.error("Wallet load error:", err);
   }
 }
-  function updateUser(user) {
     window.ITEMSATIS_AUTH_USER = user || null;
     const label = document.querySelector("#bottomLogin span");
     if (label) label.textContent = user ? "Hesabım" : "Giriş Yap";
