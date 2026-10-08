@@ -99,23 +99,38 @@
 </aside>
 
 <div class="modal" id="loginModal">
-  <div class="login-box">
-    <button class="modal-close" id="loginClose">×</button>
-    <h2>Giriş Yap</h2>
-    <p>Aşağıdaki seçeneklerden hızlıca giriş yapabilirsiniz.</p>
-    <div class="socials"><button class="google">G</button><button class="facebook">f</button><button class="discord">☯</button><button class="steam">◉</button></div>
+  <div class="login-box auth-box">
+    <button class="modal-close" id="loginClose" type="button">×</button>
+    <h2 id="authTitle">Giriş Yap</h2>
+    <p id="authSubtitle">Hesabınızla giriş yapın veya ücretsiz hesap oluşturun.</p>
+
+    <div class="socials auth-socials">
+      <button class="google" id="googleAuth" type="button" aria-label="Google ile devam et">G</button>
+      <button class="facebook" id="facebookAuth" type="button" aria-label="Facebook ile devam et">f</button>
+    </div>
+
     <div class="or"><i></i><span>veya</span><i></i></div>
-    <label>Kullanıcı Adı / Mail / Telefon <a>Kullanıcı adımı unuttum</a></label>
-    <input>
-    <label>Parola <a>Şifremi unuttum</a></label>
-    <div class="password"><input type="password"><button>◉</button></div>
-    <button class="login-submit" onclick="showNotice('Demo giriş: gerçek hesap bağlantısı henüz eklenmedi')">Giriş Yap</button>
-    <strong class="help">Mail ve telefon numarama erişimim yok</strong>
-    <p class="signup">Hala bir üyeliğiniz yok mu? <b>Hemen ücretsiz üye ol</b></p>
+
+    <label>E-posta</label>
+    <input id="authEmail" type="email" autocomplete="email" placeholder="ornek@mail.com">
+
+    <label>Şifre</label>
+    <div class="password">
+      <input id="authPassword" type="password" autocomplete="current-password" placeholder="En az 6 karakter">
+      <button id="togglePassword" type="button">◉</button>
+    </div>
+
+    <button class="login-submit" id="emailAuth" type="button">Giriş Yap</button>
+    <button class="auth-secondary" id="switchAuth" type="button">Hesabın yok mu? Ücretsiz üye ol</button>
+    <button class="auth-logout" id="logoutAuth" type="button" hidden>Çıkış Yap</button>
+    <div class="auth-status" id="authStatus" role="status"></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
 </body>
 </html>
