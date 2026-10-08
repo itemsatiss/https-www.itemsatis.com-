@@ -700,4 +700,17 @@ font-weight:600!important;
   .reference-search{
     background:transparent!important;
   }
+}/* ARAMA ÇUBUĞU - ALT ZEMİNİ DE DÜZELT */
+@media(max-width:520px){
+  .site{
+    background:#282b3e!important;
+  }
+
+  .reference-search{
+    background:rgba(40,43,62,.18)!important;
+    border:0!important;
+    box-shadow:none!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+  }
 }
