@@ -951,11 +951,11 @@ const adminScript = document.createElement("script");
 adminScript.src = "admin.js";
 document.body.appendChild(adminScript);
 // CANLI DESTEK SİSTEMİ
-const supportOpenBtn = document.getElementById("supportOpen");
-
-if (supportOpenBtn) {
-  supportOpenBtn.addEventListener("click", openSupportChat);
-}
+document.addEventListener("click", function (event) {
+  if (event.target.closest("#supportOpen")) {
+    openSupportChat();
+  }
+});
 
 function openSupportChat() {
   if (document.getElementById("supportChatOverlay")) return;
