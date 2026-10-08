@@ -40,9 +40,17 @@
   }
 
   function openAuth() {
-    if (typeof openLogin === "function") openLogin();
-    setMode(false);
+  if (
+    window.ITEMSATIS_AUTH_USER &&
+    typeof window.itemsatisOpenProfile === "function"
+  ) {
+    window.itemsatisOpenProfile();
+    return;
   }
+
+  if (typeof openLogin === "function") openLogin();
+  setMode(false);
+}
 
   // Replace the existing top/bottom login hooks with the auth-aware handler.
   document.getElementById("bottomLogin")?.addEventListener("click", openAuth);
