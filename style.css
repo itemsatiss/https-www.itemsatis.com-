@@ -582,4 +582,85 @@ font-weight:600!important;
     margin-top:0!important;
     border-radius:10px!important;
   }
+}/* ITEMSATIS MOBIL - SON DÜZEN */
+@media (max-width:520px){
+
+  .top{
+    width:100%!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+    background:#26293d!important;
+  }
+
+  .header-reference{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    height:auto!important;
+  }
+
+  .reference-search{
+    width:100%!important;
+    height:50px!important;
+    min-height:50px!important;
+    margin:0!important;
+    padding:0 18px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:12px!important;
+    box-sizing:border-box!important;
+
+    background:rgba(70,74,105,.48)!important;
+    color:#dfe1eb!important;
+    border:0!important;
+    border-radius:0!important;
+
+    backdrop-filter:blur(20px)!important;
+    -webkit-backdrop-filter:blur(20px)!important;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.05),
+      0 1px 8px rgba(0,0,0,.12)!important;
+
+    font-size:15px!important;
+  }
+
+  .search-glass{
+    font-size:26px!important;
+    color:#f0f1f5!important;
+  }
+
+  .reference-search > span:last-child{
+    color:#dfe1eb!important;
+    font-size:15px!important;
+  }
+
+  .hero-wrap{
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    background:#05060b!important;
+  }
+
+  .hero-card{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    border-radius:0!important;
+    overflow:hidden!important;
+  }
+
+  .hero-img{
+    width:100%!important;
+    height:auto!important;
+    display:block!important;
+  }
+
+  .bottom-nav{
+    height:82px!important;
+    min-height:82px!important;
+  }
 }
