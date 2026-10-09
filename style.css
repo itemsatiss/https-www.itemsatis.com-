@@ -939,4 +939,55 @@ font-weight:600!important;
   #loginModal #authEmail {
     height: 66px !important;
   }
+}/* Giriş penceresi - mobil ölçü düzeltmesi */
+@media (max-width: 600px) {
+  #loginModal .login-box.auth-box {
+    width: calc(100% - 32px) !important;
+    max-width: 440px !important;
+    padding: 24px 22px !important;
+    box-sizing: border-box !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+  }
+
+  #loginModal #authTitle {
+    font-size: 26px !important;
+  }
+
+  #loginModal #authSubtitle {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  #loginModal .auth-socials {
+    gap: 12px !important;
+  }
+
+  #loginModal .auth-socials button {
+    height: 68px !important;
+    min-width: 0 !important;
+  }
+
+  #loginModal .auth-socials img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  #loginModal #authEmail,
+  #loginModal #authPassword {
+    height: 52px !important;
+    font-size: 16px !important;
+  }
+
+  #loginModal #emailAuth {
+    height: 56px !important;
+    margin-top: 16px !important;
+    font-size: 17px !important;
+  }
+
+  #loginModal .auth-label-row,
+  #loginModal .auth-secondary,
+  #loginModal .auth-link {
+    font-size: 14px !important;
+  }
 }
