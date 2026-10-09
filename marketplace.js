@@ -563,10 +563,7 @@ try {
         openLogin();
       }
     }
-  });
-      render();
-      return;
-    }
+  
 
     const card = event.target.closest(".is-card");
 
