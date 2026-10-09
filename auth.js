@@ -823,10 +823,8 @@ accountLogoutButton?.addEventListener("click", async () => {
   }
 
   
-  googleBtn.addEventListener("click", () => {
-  alert("GOOGLE BUTON ÇALIŞTI");
-  oauth("google");
-});
+  googleBtn.addEventListener("click", () => oauth("google"));
+
 
   
 
