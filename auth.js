@@ -818,7 +818,7 @@ accountLogoutButton?.addEventListener("click", async () => {
     if (typeof closeMenu === "function") closeMenu();
     openAuth();
   });
-  document.getElementById("loginOpen")?.addEventListener("click", openAuth);
+  
 
   switchBtn.addEventListener("click", () => setMode(!signUpMode));
   toggle.addEventListener("click", () => {
