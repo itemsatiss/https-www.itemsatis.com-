@@ -18,7 +18,18 @@
     "Yapay Zeka","Facebook"
   ];
 
-  let cart = JSON.parse(localStorage.getItem("itemsatis_cart") || "[]");
+  let cart = [];
+
+try {
+  cart = JSON.parse(localStorage.getItem("itemsatis_cart") || "[]");
+
+  if (!Array.isArray(cart)) {
+    cart = [];
+  }
+} catch (e) {
+  localStorage.removeItem("itemsatis_cart");
+  cart = [];
+}
   let selectedCategory = "Tümü";
 
   const style = document.createElement("style");
