@@ -752,13 +752,15 @@ loadWallet(user);
   window.itemsatisOpenProfile = openAccountPanel;
 
   accountOverlay.addEventListener("click", (e) => {
-    if(
-      e.target === accountOverlay ||
-      e.target.closest(".account-close")
-    ){
-      accountOverlay.classList.remove("open");
-    }
-  });
+  const closeButton = e.target.closest(".account-close");
+
+  if (e.target === accountOverlay || closeButton) {
+    e.preventDefault();
+    e.stopPropagation();
+    accountOverlay.classList.remove("open");
+    accountOverlay.style.setProperty("display", "none", "important");
+  }
+});
   function openAuth() {
   if (
     window.ITEMSATIS_AUTH_USER &&
