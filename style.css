@@ -990,4 +990,162 @@ font-weight:600!important;
   #loginModal .auth-link {
     font-size: 14px !important;
   }
+}/* ITEMSATIS GIRIS EKRANI - MOBIL VE MASAUSTU */
+#loginModal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+#loginModal .login-box.auth-box {
+  width: 100% !important;
+  max-width: 660px !important;
+  max-height: calc(100dvh - 32px) !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  margin: auto !important;
+  padding: 28px 38px !important;
+  border: 1px solid #45465f !important;
+  border-radius: 20px !important;
+  background: #303044 !important;
+  color: #f5f5fa !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35) !important;
+}
+
+#loginModal #authTitle {
+  margin: 0 0 12px !important;
+  color: #fff !important;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+}
+
+#loginModal #authSubtitle {
+  margin: 0 0 22px !important;
+  color: #d0d0df !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+#loginModal .auth-socials {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  margin-bottom: 24px !important;
+}
+
+#loginModal .auth-socials button {
+  width: 100% !important;
+  height: 72px !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+}
+
+#loginModal .social-google {
+  background: #db4437 !important;
+  color: white !important;
+}
+
+#loginModal .social-facebook {
+  background: #1877f2 !important;
+  color: white !important;
+}
+
+#loginModal .social-discord {
+  background: #5865f2 !important;
+}
+
+#loginModal .social-steam {
+  background: #171a21 !important;
+}
+
+#loginModal .auth-socials img {
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+}
+
+#loginModal .auth-label-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 16px 0 8px !important;
+}
+
+#loginModal #authEmail,
+#loginModal #authPassword {
+  width: 100% !important;
+  height: 54px !important;
+  box-sizing: border-box !important;
+  padding: 0 14px !important;
+  border: 1px solid #45465f !important;
+  border-radius: 10px !important;
+  background: #292a3c !important;
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+#loginModal #emailAuth {
+  width: 100% !important;
+  height: 54px !important;
+  margin-top: 18px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: #397ff0 !important;
+  color: white !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 600px) {
+  #loginModal {
+    padding: 12px 16px 24px !important;
+  }
+
+  #loginModal .login-box.auth-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    max-height: calc(100dvh - 48px) !important;
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  #loginModal #authTitle {
+    font-size: 26px !important;
+  }
+
+  #loginModal #authSubtitle {
+    font-size: 14px !important;
+  }
+
+  #loginModal .auth-socials {
+    gap: 9px !important;
+  }
+
+  #loginModal .auth-socials button {
+    height: 58px !important;
+    border-radius: 12px !important;
+  }
+
+  #loginModal .auth-socials img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  #loginModal #authEmail,
+  #loginModal #authPassword {
+    height: 48px !important;
+  }
+
+  #loginModal #emailAuth {
+    height: 50px !important;
+    margin-top: 14px !important;
+  }
 }
