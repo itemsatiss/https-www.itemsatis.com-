@@ -1143,7 +1143,7 @@ document.addEventListener("click", function (event) {
 
   if (close.matches(".account-close") && account) {
     account.classList.remove("open");
-    account.style.removeProperty("display");
+account.style.setProperty("display", "none", "important");
   }
 
   if (close.matches("#loginClose") && login) {
