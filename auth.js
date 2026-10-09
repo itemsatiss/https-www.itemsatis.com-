@@ -804,6 +804,16 @@ accountLogoutButton?.addEventListener("click", async () => {
 });
   // Replace the existing top/bottom login hooks with the auth-aware handler.
   document.getElementById("bottomLogin")?.addEventListener("click", openAuth);
+  document.getElementById("loginOpen")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (window.ITEMSATIS_AUTH_USER) {
+    window.itemsatisOpenProfile?.();
+  } else {
+    openAuth();
+  }
+});
   document.getElementById("drawerLogin")?.addEventListener("click", () => {
     if (typeof closeMenu === "function") closeMenu();
     openAuth();
