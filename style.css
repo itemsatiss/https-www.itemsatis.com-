@@ -804,18 +804,3 @@ font-weight:600!important;
 }
 
 
-.social-discord::before {
-  content: "" !important;
-  background: url("https://cdn.simpleicons.org/discord/FFFFFF") center/contain no-repeat !important;
-  display: inline-block !important;
-  width: 42px !important;
-  height: 42px !important;
-}
-
-.social-steam::before {
-  content: "" !important;
-  background: url("https://cdn.simpleicons.org/steam/FFFFFF") center/contain no-repeat !important;
-  display: inline-block !important;
-  width: 42px !important;
-  height: 42px !important;
-}
