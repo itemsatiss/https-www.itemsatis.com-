@@ -1130,12 +1130,9 @@ function openSupportChat() {
     overlay.remove();
   };
 }
-/* GIRIS VE HESAP KAPATMA DUZELTMESI */
+/* GIRIS VE HESAP KAPATMA */
 document.addEventListener("click", function (event) {
-  const close = event.target.closest(
-    "#loginClose, .account-close"
-  );
-
+  const close = event.target.closest("#loginClose, .account-close");
   if (!close) return;
 
   event.preventDefault();
@@ -1144,13 +1141,13 @@ document.addEventListener("click", function (event) {
   const login = document.getElementById("loginModal");
   const account = document.querySelector(".account-overlay");
 
-  if (login && close.id === "loginClose") {
-    login.classList.remove("open");
-    login.style.removeProperty("display");
-  }
-
-  if (account && close.classList.contains("account-close")) {
+  if (close.matches(".account-close") && account) {
     account.classList.remove("open");
     account.style.removeProperty("display");
+  }
+
+  if (close.matches("#loginClose") && login) {
+    login.classList.remove("open");
+    login.style.removeProperty("display");
   }
 }, true);
