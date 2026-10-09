@@ -990,7 +990,8 @@ font-weight:600!important;
   #loginModal .auth-link {
     font-size: 14px !important;
   }
-}/* ITEMSATIS GIRIS EKRANI - MOBIL VE MASAUSTU */
+}
+/* ITEMSATIS GIRIS EKRANI - MOBIL VE MASAUSTU */
 #loginModal {
   position: fixed !important;
   inset: 0 !important;
