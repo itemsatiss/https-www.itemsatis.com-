@@ -777,9 +777,9 @@ function openAuth() {
   const loginModal = document.getElementById("loginModal");
 
   if (loginModal) {
-    loginModal.classList.remove("open");
-    loginModal.style.removeProperty("display");
-  }
+  loginModal.style.removeProperty("display");
+  loginModal.classList.add("open");
+}
 
   setMode(false);
 }
