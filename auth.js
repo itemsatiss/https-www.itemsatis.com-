@@ -53,7 +53,7 @@ accountPanel.innerHTML = `
         </div>
       </div>
 
-      <button class="account-close" type="button">×</button>
+      <button class="account-close" type="button" onclick="this.closest('.account-overlay').classList.remove('open'); this.closest('.account-overlay').style.setProperty('display','none','important')">×</button>
     </div>
     
 
