@@ -766,7 +766,8 @@ document.head.appendChild(accountCSS);
     return;
   }
 
-  if (typeof openLogin === "function") openLogin();
+  const loginModal = document.getElementById("loginModal");
+if (loginModal) loginModal.classList.add("open");
   setMode(false);
 }
 
