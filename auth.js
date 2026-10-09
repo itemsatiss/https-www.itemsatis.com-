@@ -1106,19 +1106,27 @@ function openSupportChat() {
     overlay.remove();
   };
 }
-/* HESABIM PANELI KAPATMA DUZELTMESI */
+/* KAPATMA BUTONLARI - DUZELTME */
 document.addEventListener("click", function (event) {
-  const closeButton = event.target.closest(".account-close");
+  const close = event.target.closest(
+    "#loginClose, .account-close"
+  );
 
-  if (closeButton) {
-    event.preventDefault();
-    event.stopPropagation();
+  if (!close) return;
 
-    const panel = document.querySelector(".account-overlay");
+  event.preventDefault();
+  event.stopPropagation();
 
-    if (panel) {
-      panel.classList.remove("open");
-      panel.style.display = "none";
-    }
+  const login = document.getElementById("loginModal");
+  const account = document.querySelector(".account-overlay");
+
+  if (login) {
+    login.classList.remove("open");
+    login.style.setProperty("display", "none", "important");
+  }
+
+  if (account) {
+    account.classList.remove("open");
+    account.style.setProperty("display", "none", "important");
   }
 }, true);
