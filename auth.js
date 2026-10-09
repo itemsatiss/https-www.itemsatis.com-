@@ -760,7 +760,28 @@ loadWallet(user);
     }
   });
   function openAuth() {
-  if (
+ const accountLogoutButton = accountOverlay.querySelector(".account-logout-menu");
+
+accountLogoutButton?.addEventListener("click", async () => {
+  if (!supabase) return;
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    alert("Çıkış yapılamadı. Tekrar dene.");
+    console.error(error);
+    return;
+  }
+
+  accountOverlay.classList.remove("open");
+  updateUser(null);
+
+  const loginModal = document.getElementById("loginModal");
+  if (loginModal) {
+    loginModal.classList.add("open");
+  }
+});
+   if (
     window.ITEMSATIS_AUTH_USER &&
     typeof window.itemsatisOpenProfile === "function"
   ) {
