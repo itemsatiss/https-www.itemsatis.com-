@@ -760,7 +760,24 @@ loadWallet(user);
     }
   });
   function openAuth() {
- const accountLogoutButton = accountOverlay.querySelector(".account-logout-menu");
+  if (
+    window.ITEMSATIS_AUTH_USER &&
+    typeof window.itemsatisOpenProfile === "function"
+  ) {
+    window.itemsatisOpenProfile();
+    return;
+  }
+
+  const loginModal = document.getElementById("loginModal");
+  if (loginModal) {
+    loginModal.style.removeProperty("display");
+    loginModal.classList.add("open");
+  }
+
+  setMode(false);
+}
+ 
+const accountLogoutButton = accountOverlay.querySelector(".account-logout-menu");
 
 accountLogoutButton?.addEventListener("click", async () => {
   if (!supabase) return;
