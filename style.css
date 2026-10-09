@@ -1207,3 +1207,22 @@ font-weight:600!important;
     max-width: 100%;
   }
 }
+/* BAKİYE EKRANI - KARTLARI KÜÇÜLT */
+@media (max-width: 600px) {
+  .drawer {
+    padding: 12px !important;
+  }
+
+  .drawer > div {
+    min-height: 0 !important;
+  }
+
+  .drawer img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  .drawer button {
+    box-sizing: border-box;
+  }
+}
