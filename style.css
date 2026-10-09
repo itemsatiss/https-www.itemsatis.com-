@@ -1150,3 +1150,60 @@ font-weight:600!important;
     margin-top: 14px !important;
   }
 }
+/* MOBİL BAKİYE MENÜSÜ BOYUTLARI */
+@media (max-width: 600px) {
+
+  /* Bakiye menüsünün genel boşlukları */
+  #accountOverlay {
+    padding: 16px !important;
+  }
+
+  /* Profil ve çekilebilir bakiye kartları */
+  #accountOverlay .account-card,
+  #accountOverlay .profile-card,
+  #accountOverlay .balance-card,
+  #accountOverlay .wallet-card,
+  #accountOverlay .withdrawable-card {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 18px 14px !important;
+    margin-bottom: 14px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Kartların iç düzeni */
+  #accountOverlay .account-card > *,
+  #accountOverlay .profile-card > * {
+    min-width: 0;
+  }
+
+  /* Profil fotoğrafı */
+  #accountOverlay .account-card img,
+  #accountOverlay .profile-card img {
+    width: 54px !important;
+    height: 54px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Kart yazıları */
+  #accountOverlay .account-card h2,
+  #accountOverlay .profile-card h2,
+  #accountOverlay .balance-card h2,
+  #accountOverlay .wallet-card h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+
+  #accountOverlay .account-card p,
+  #accountOverlay .profile-card p,
+  #accountOverlay .balance-card p,
+  #accountOverlay .wallet-card p {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* İşlem butonları */
+  #accountOverlay button {
+    max-width: 100%;
+  }
+}
