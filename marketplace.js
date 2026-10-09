@@ -689,3 +689,272 @@
   render();
 
 })();
+/* İLAN EKLE — KATEGORİ SEÇİM EKRANI */
+(() => {
+  if (document.getElementById("ilanWizard")) return;
+
+  const categories = [
+    { name: "Sosyal Medya", icon: "💬", sub: ["Instagram", "TikTok", "YouTube", "Facebook", "Discord"] },
+    { name: "Mobil Oyunlar", icon: "🎮", sub: ["PUBG Mobile", "PUBG Mobile Lite", "PUBG Mobile Random Hesap", "PUBG Mobile Boost", "PUBG New State"] },
+    { name: "Freelancer", icon: "💼", sub: ["Grafik Tasarım", "Video Montaj", "Yazılım", "Diğer Hizmetler"] },
+    { name: "Reklam Satışı", icon: "📢", sub: ["Instagram Reklam", "Facebook Reklam", "TikTok Reklam", "YouTube Reklam"] },
+    { name: "MMO Oyunlar", icon: "⚔️", sub: ["Metin2", "Knight Online", "World of Warcraft", "Diğer Oyunlar"] },
+    { name: "Boost Hizmetleri", icon: "⚡", sub: ["PUBG Mobile Boost", "Valorant Boost", "League of Legends Boost"] },
+    { name: "PUBG Mobile", icon: "🎯", sub: ["PUBG Mobile", "PUBG Mobile Lite", "PUBG Mobile Random Hesap", "PUBG Mobile Boost", "PUBG Steam Boost", "PUBG Steam", "PUBG New State"] },
+    { name: "FC 26", icon: "⚽", sub: ["FC 26 Hesap", "FC 26 Coins", "FC 26 Oyuncu"] },
+    { name: "Valorant", icon: "🎯", sub: ["Valorant Hesap", "Valorant VP", "Valorant Boost"] },
+    { name: "Steam", icon: "🎮", sub: ["Steam Hesap", "Steam Oyun", "Steam Random Key"] },
+    { name: "Roblox", icon: "🧱", sub: ["Roblox Hesap", "Robux", "Roblox Hizmetleri"] },
+    { name: "Minecraft", icon: "⛏️", sub: ["Minecraft Hesap", "Minecraft Sunucu"] }
+  ];
+
+  const wizard = document.createElement("div");
+  wizard.id = "ilanWizard";
+
+  wizard.innerHTML = `
+    <div class="iw-panel">
+      <button class="iw-close" type="button" aria-label="Kapat">×</button>
+
+      <div class="iw-steps">
+        <div class="iw-progress"><i></i><i></i><i></i><i></i></div>
+        <div class="iw-step-labels">
+          <span class="active">▰ Kategori</span>
+          <span>▧ Detaylar</span>
+          <span>ϟ Doping</span>
+          <span>▤ Sözleşme</span>
+        </div>
+      </div>
+
+      <section class="iw-content">
+        <div class="iw-heading">
+          <button class="iw-back" type="button" hidden>←</button>
+          <h2>Kategori Seçin</h2>
+          <span class="iw-selected">Seçim yapılmadı</span>
+        </div>
+
+        <input class="iw-search" type="search" placeholder="⌕  Kategori arayın">
+
+        <div class="iw-grid"></div>
+        <div class="iw-next-wrap" hidden>
+          <button class="iw-next" type="button">Devam Et →</button>
+        </div>
+      </section>
+    </div>
+  `;
+
+  const css = document.createElement("style");
+  css.textContent = `
+    #ilanWizard {
+      position:fixed; inset:0; z-index:999999;
+      display:none; overflow-y:auto;
+      background:rgba(12,14,28,.88);
+      color:#f6f6fc; padding:24px 12px 100px;
+      box-sizing:border-box;
+      font-family:inherit;
+    }
+    #ilanWizard.open { display:block; }
+    #ilanWizard * { box-sizing:border-box; }
+    #ilanWizard .iw-panel {
+      position:relative; width:100%; max-width:850px;
+      margin:10px auto; padding:24px;
+      border:1px solid #41445f; border-radius:22px;
+      background:#303247;
+      box-shadow:0 20px 60px #0006;
+    }
+    #ilanWizard .iw-close {
+      display:block; margin-left:auto; margin-bottom:14px;
+      background:transparent; border:0; color:#fff;
+      font-size:32px; cursor:pointer;
+    }
+    #ilanWizard .iw-steps {
+      padding:22px 18px; margin-bottom:26px;
+      border:1px solid #41445f; border-radius:18px;
+    }
+    #ilanWizard .iw-progress {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+      margin-bottom:18px;
+    }
+    #ilanWizard .iw-progress i {
+      height:8px; border-radius:20px; background:#1f2131;
+    }
+    #ilanWizard .iw-progress i:first-child { background:#6862f5; }
+    #ilanWizard .iw-step-labels {
+      display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:5px; color:#a9abc0; font-size:13px; text-align:center;
+    }
+    #ilanWizard .iw-step-labels .active { color:#827bff; }
+    #ilanWizard .iw-heading {
+      display:flex; align-items:center; flex-wrap:wrap;
+      gap:10px; margin-bottom:18px;
+    }
+    #ilanWizard .iw-heading h2 {
+      margin:0; font-size:25px; flex:1;
+    }
+    #ilanWizard .iw-selected {
+      border:1px solid #51536d; border-radius:12px;
+      padding:9px 12px; font-size:13px; color:#d6d7e4;
+    }
+    #ilanWizard .iw-back {
+      border:1px solid #51536d; border-radius:10px;
+      background:#292b40; color:#fff; padding:8px 12px;
+      font-size:20px; cursor:pointer;
+    }
+    #ilanWizard .iw-search {
+      display:block; width:100%; height:58px;
+      margin-bottom:24px; padding:0 18px;
+      border:1px solid #51536d; border-radius:13px;
+      background:#3b3e55; color:white; font:inherit; font-size:16px;
+      outline:none;
+    }
+    #ilanWizard .iw-search::placeholder { color:#a7a9bd; }
+    #ilanWizard .iw-grid {
+      display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    #ilanWizard .iw-card {
+      position:relative; min-width:0; height:205px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      align-items:center; padding:14px 8px;
+      border:1px solid #4b4e68; border-radius:18px;
+      background:linear-gradient(155deg,#424866,#222437 80%);
+      color:#fff; overflow:hidden; cursor:pointer;
+      text-align:center; font:inherit; font-size:15px;
+      transition:transform .15s,border-color .15s;
+    }
+    #ilanWizard .iw-card:active { transform:scale(.98); }
+    #ilanWizard .iw-card::before {
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg,transparent 15%,rgba(14,15,29,.94) 100%);
+      pointer-events:none;
+    }
+    #ilanWizard .iw-card .iw-icon {
+      position:absolute; top:34%; left:50%;
+      transform:translate(-50%,-50%);
+      font-size:47px; filter:drop-shadow(0 3px 5px #0008);
+    }
+    #ilanWizard .iw-card b {
+      position:relative; z-index:1; line-height:1.35;
+      overflow-wrap:anywhere;
+    }
+    #ilanWizard .iw-card.selected {
+      border:2px solid #716aff;
+      box-shadow:0 0 0 2px #716aff33;
+    }
+    #ilanWizard .iw-next-wrap { margin-top:22px; }
+    #ilanWizard .iw-next {
+      width:100%; padding:15px; border:0; border-radius:12px;
+      background:#6862f5; color:#fff; font-size:16px;
+      font-weight:700; cursor:pointer;
+    }
+    @media(max-width:520px) {
+      #ilanWizard { padding:12px 10px 90px; }
+      #ilanWizard .iw-panel { padding:16px 12px; margin:0 auto; border-radius:18px; }
+      #ilanWizard .iw-steps { padding:16px 8px; margin-bottom:18px; }
+      #ilanWizard .iw-progress { gap:7px; }
+      #ilanWizard .iw-step-labels { font-size:10px; }
+      #ilanWizard .iw-heading h2 { font-size:21px; }
+      #ilanWizard .iw-selected { font-size:11px; padding:7px 9px; }
+      #ilanWizard .iw-search { height:52px; margin-bottom:16px; }
+      #ilanWizard .iw-grid { gap:9px; }
+      #ilanWizard .iw-card { height:170px; border-radius:14px; font-size:13px; }
+      #ilanWizard .iw-card .iw-icon { font-size:38px; }
+    }
+  `;
+  document.head.appendChild(css);
+  document.body.appendChild(wizard);
+
+  const grid = wizard.querySelector(".iw-grid");
+  const search = wizard.querySelector(".iw-search");
+  const heading = wizard.querySelector(".iw-heading h2");
+  const selectedBadge = wizard.querySelector(".iw-selected");
+  const back = wizard.querySelector(".iw-back");
+  const nextWrap = wizard.querySelector(".iw-next-wrap");
+  let currentCategory = null;
+  let currentSubcategory = null;
+
+  function render(list) {
+    grid.innerHTML = "";
+
+    list.forEach(item => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "iw-card";
+      button.innerHTML = `
+        <span class="iw-icon">${item.icon || "🎮"}</span>
+        <b></b>
+      `;
+      button.querySelector("b").textContent = item.name;
+
+      button.addEventListener("click", () => {
+        if (currentCategory === null) {
+          currentCategory = item;
+          currentSubcategory = null;
+          heading.textContent = item.name + " kategorileri";
+          selectedBadge.textContent = item.name;
+          back.hidden = false;
+          nextWrap.hidden = true;
+
+          render(item.sub.map(name => ({name, icon: name.toLowerCase().includes("boost") ? "⚡" : "🎯"})));
+          search.value = "";
+          search.placeholder = "Alt kategori arayın";
+        } else {
+          currentSubcategory = item.name;
+          selectedBadge.textContent = item.name;
+          grid.querySelectorAll(".iw-card").forEach(card => {
+            card.classList.toggle("selected", card.textContent.includes(item.name));
+          });
+          nextWrap.hidden = false;
+        }
+      });
+
+      grid.appendChild(button);
+    });
+  }
+
+  function reset() {
+    currentCategory = null;
+    currentSubcategory = null;
+    heading.textContent = "Kategori Seçin";
+    selectedBadge.textContent = "Seçim yapılmadı";
+    back.hidden = true;
+    nextWrap.hidden = true;
+    search.value = "";
+    search.placeholder = "⌕  Kategori arayın";
+    render(categories);
+  }
+
+  search.addEventListener("input", () => {
+    const q = search.value.toLocaleLowerCase("tr");
+    if (currentCategory === null) {
+      render(categories.filter(item => item.name.toLocaleLowerCase("tr").includes(q)));
+    } else {
+      render(currentCategory.sub
+        .filter(name => name.toLocaleLowerCase("tr").includes(q))
+        .map(name => ({name, icon: name.toLowerCase().includes("boost") ? "⚡" : "🎯"})));
+    }
+  });
+
+  back.addEventListener("click", reset);
+  wizard.querySelector(".iw-close").addEventListener("click", () => wizard.classList.remove("open"));
+
+  wizard.addEventListener("click", event => {
+    if (event.target === wizard) wizard.classList.remove("open");
+  });
+
+  wizard.querySelector(".iw-next").addEventListener("click", () => {
+    if (!currentCategory || !currentSubcategory) return;
+    alert("Seçilen kategori: " + currentCategory.name + "\nAlt kategori: " + currentSubcategory + "\n\nDetaylar adımını bir sonraki aşamada ekleyeceğiz.");
+  });
+
+  const addListingButton = document.querySelector(".drawer-actions button:first-child");
+  if (addListingButton) {
+    addListingButton.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      reset();
+      wizard.classList.add("open");
+    });
+  }
+
+  render(categories);
+})();
