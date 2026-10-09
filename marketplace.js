@@ -1001,15 +1001,17 @@
   });
 });
 
-  const addListingButton = document.querySelector(".drawer-actions button:first-child");
-  if (addListingButton) {
-    addListingButton.addEventListener("click", event => {
-      event.preventDefault();
-      event.stopPropagation();
-      reset();
-      wizard.classList.add("open");
-    });
-  }
+  document.addEventListener("click", event => {
+  const button = event.target.closest(
+    ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
+  );
+
+  if (!button) return;
+
+  event.preventDefault();
+  reset();
+  wizard.classList.add("open");
+});
 
   render(categories);
 })();
