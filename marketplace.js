@@ -942,9 +942,64 @@
   });
 
   wizard.querySelector(".iw-next").addEventListener("click", () => {
-    if (!currentCategory || !currentSubcategory) return;
-    alert("Seçilen kategori: " + currentCategory.name + "\nAlt kategori: " + currentSubcategory + "\n\nDetaylar adımını bir sonraki aşamada ekleyeceğiz.");
+  if (!currentCategory || !currentSubcategory) {
+    alert("Lütfen önce kategori ve alt kategori seç.");
+    return;
+  }
+
+  const content = wizard.querySelector(".iw-content");
+
+  content.innerHTML = `
+    <div class="iw-heading">
+      <button class="iw-back" type="button">←</button>
+      <h2>İlan Detayları</h2>
+    </div>
+
+    <p style="color:#aaa;margin-bottom:20px">
+      ${currentCategory.name} / ${currentSubcategory}
+    </p>
+
+    <label for="iw-type">İlan Türü</label>
+    <select id="iw-type" class="iw-search">
+      <option>Manuel Teslimat</option>
+      <option>Stoklu Ürün</option>
+      <option>Alım İlanı</option>
+    </select>
+
+    <label for="iw-title">İlan Başlığı</label>
+    <input id="iw-title" class="iw-search"
+      maxlength="48" placeholder="İlan başlığınızı yazın">
+
+    <label for="iw-description">Açıklama</label>
+    <textarea id="iw-description" class="iw-search"
+      maxlength="4000" rows="6"
+      placeholder="İlanınızı detaylıca anlatın"></textarea>
+
+    <label for="iw-price">Fiyat (TL)</label>
+    <input id="iw-price" class="iw-search"
+      type="number" min="30" step="0.01"
+      placeholder="En az 30 TL">
+
+    <button id="iw-check" class="iw-next" type="button">
+      Bilgileri Kontrol Et →
+    </button>
+  `;
+
+  content.querySelector(".iw-back").addEventListener("click", reset);
+
+  content.querySelector("#iw-check").addEventListener("click", () => {
+    const title = content.querySelector("#iw-title").value.trim();
+    const description = content.querySelector("#iw-description").value.trim();
+    const price = Number(content.querySelector("#iw-price").value);
+
+    if (!title || !description || !Number.isFinite(price) || price < 30) {
+      alert("Başlık ve açıklama gir; fiyat en az 30 TL olmalı.");
+      return;
+    }
+
+    alert("İlan detayları tamamlandı! Sonraki adımda görsel yükleme ve Supabase kaydını ekleyeceğiz.");
   });
+});
 
   const addListingButton = document.querySelector(".drawer-actions button:first-child");
   if (addListingButton) {
