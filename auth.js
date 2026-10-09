@@ -1133,19 +1133,3 @@ document.addEventListener("click", function (event) {
     account.style.setProperty("display", "none", "important");
   }
 }, true);
-document.addEventListener("click", function (event) {
-  const button = event.target.closest(
-    "#bottomLogin, #loginOpen, #drawerLogin"
-  );
-
-  if (!button) return;
-
-  event.preventDefault();
-
-  const modal = document.getElementById("loginModal");
-
-  if (modal) {
-    modal.classList.add("open");
-    modal.style.display = "flex";
-  }
-}, true);
