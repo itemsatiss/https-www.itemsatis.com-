@@ -245,6 +245,10 @@ accountCSS.textContent = `
 }
 
 .account-close{
+  position:relative;
+z-index:1000000;
+pointer-events:auto;
+cursor:pointer;
   width:42px;
   height:42px;
   border:0;
