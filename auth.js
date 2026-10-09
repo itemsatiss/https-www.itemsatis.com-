@@ -1106,3 +1106,15 @@ function openSupportChat() {
     overlay.remove();
   };
 }
+/* GİRİŞ PENCERESİ KAPATMA DÜZELTMESİ */
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("loginModal");
+  const closeBtn = document.getElementById("loginClose");
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener("click", function () {
+      modal.classList.remove("open");
+      modal.style.display = "none";
+    });
+  }
+});
