@@ -702,19 +702,24 @@ try {
   if (document.getElementById("ilanWizard")) return;
 
   const categories = [
-    { name: "Sosyal Medya", icon: "💬", sub: ["Instagram", "TikTok", "YouTube", "Facebook", "Discord"] },
-    { name: "Mobil Oyunlar", icon: "🎮", sub: ["PUBG Mobile", "PUBG Mobile Lite", "PUBG Mobile Random Hesap", "PUBG Mobile Boost", "PUBG New State"] },
-    { name: "Freelancer", icon: "💼", sub: ["Grafik Tasarım", "Video Montaj", "Yazılım", "Diğer Hizmetler"] },
-    { name: "Reklam Satışı", icon: "📢", sub: ["Instagram Reklam", "Facebook Reklam", "TikTok Reklam", "YouTube Reklam"] },
-    { name: "MMO Oyunlar", icon: "⚔️", sub: ["Metin2", "Knight Online", "World of Warcraft", "Diğer Oyunlar"] },
-    { name: "Boost Hizmetleri", icon: "⚡", sub: ["PUBG Mobile Boost", "Valorant Boost", "League of Legends Boost"] },
-    { name: "PUBG Mobile", icon: "🎯", sub: ["PUBG Mobile", "PUBG Mobile Lite", "PUBG Mobile Random Hesap", "PUBG Mobile Boost", "PUBG Steam Boost", "PUBG Steam", "PUBG New State"] },
-    { name: "FC 26", icon: "⚽", sub: ["FC 26 Hesap", "FC 26 Coins", "FC 26 Oyuncu"] },
-    { name: "Valorant", icon: "🎯", sub: ["Valorant Hesap", "Valorant VP", "Valorant Boost"] },
-    { name: "Steam", icon: "🎮", sub: ["Steam Hesap", "Steam Oyun", "Steam Random Key"] },
-    { name: "Roblox", icon: "🧱", sub: ["Roblox Hesap", "Robux", "Roblox Hizmetleri"] },
-    { name: "Minecraft", icon: "⛏️", sub: ["Minecraft Hesap", "Minecraft Sunucu"] }
-  ];
+  { name: "Sosyal Medya", image: "social-media.webp", sub: ["Instagram", "TikTok", "YouTube", "Facebook", "Discord"] },
+  { name: "Mobil Oyunlar", image: "mobile-games.webp", sub: ["PUBG Mobile", "PUBG Mobile Lite", "PUBG Mobile Random Hesap", "PUBG Mobile Boost", "PUBG New State"] },
+  { name: "Freelancer", image: "freelancer.webp", sub: ["Grafik Tasarım", "Video Montaj", "Yazılım", "Diğer Hizmetler"] },
+  { name: "Reklam Satışı", image: "advertising-sales.webp", sub: ["Instagram Reklam", "Facebook Reklam", "TikTok Reklam", "YouTube Reklam"] },
+  { name: "MMO Oyunlar", image: "mmo-games.webp", sub: ["Metin2", "Knight Online", "World of Warcraft", "Diğer Oyunlar"] },
+  { name: "Boost Hizmetleri", image: "boost-services.webp", sub: ["PUBG Mobile Boost", "Valorant Boost", "League of Legends Boost"] },
+  { name: "Platformlar", image: "platforms.webp", sub: ["Steam", "PlayStation", "Xbox", "Epic Games"] },
+  { name: "Yazılım Ürünleri", image: "software-products.webp", sub: ["Windows", "Office", "Antivirüs", "Diğer Yazılımlar"] },
+  { name: "Random Hesap", image: "random-accounts.webp", sub: ["Random Hesap"] },
+  { name: "Diğer Ürün Satışları", image: "other-product-sales.webp", sub: ["Diğer Ürünler"] },
+  { name: "Valorant", image: "valorant.webp", sub: ["Valorant Hesap", "Valorant VP", "Valorant Boost"] },
+  { name: "Roblox", image: "roblox.webp", sub: ["Roblox Hesap", "Robux", "Roblox Hizmetleri"] },
+  { name: "Discord", image: "discord.webp", sub: ["Discord Hesap", "Discord Nitro"] },
+  { name: "Growtopia", image: "growtopia.webp", sub: ["Growtopia Hesap", "Growtopia WL"] },
+  { name: "PUBG Mobile", image: "pubg-mobile.webp", sub: ["PUBG Mobile", "PUBG Mobile Hesap", "PUBG Mobile Boost"] },
+  { name: "Counter Strike 2", image: "counter-strike-2.webp", sub: ["CS2 Hesap", "CS2 Skin"] },
+  { name: "Minecraft", image: "minecraft.webp", sub: ["Minecraft Hesap", "Minecraft Sunucu"] }
+];
 
   const wizard = document.createElement("div");
   wizard.id = "ilanWizard";
@@ -836,6 +841,26 @@ try {
       pointer-events:none;
     }
     #ilanWizard .iw-card .iw-icon {
+    #ilanWizard .iw-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+#ilanWizard .iw-card::before {
+  z-index: 1;
+}
+
+#ilanWizard .iw-card .iw-icon {
+  z-index: 2;
+}
+
+#ilanWizard .iw-card b {
+  z-index: 3;
+}
       position:absolute; top:34%; left:50%;
       transform:translate(-50%,-50%);
       font-size:47px; filter:drop-shadow(0 3px 5px #0008);
@@ -888,9 +913,10 @@ try {
       button.type = "button";
       button.className = "iw-card";
       button.innerHTML = `
-        <span class="iw-icon">${item.icon || "🎮"}</span>
-        <b></b>
-      `;
+  ${item.image ? `<img class="iw-image" src="${item.image}" alt="">` : ""}
+  <span class="iw-icon">${item.image ? "" : (item.icon || "🎮")}</span>
+  <b></b>
+`;
       button.querySelector("b").textContent = item.name;
 
       button.addEventListener("click", () => {
