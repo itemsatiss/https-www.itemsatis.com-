@@ -802,5 +802,15 @@ font-weight:600!important;
   justify-content: center !important;
   font-size: 0 !important;
 }
+.social-discord img,
+.social-steam img {
+  display: block !important;
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: contain !important;
+}
 
-
+.social-discord,
+.social-steam {
+  font-size: initial !important;
+}
