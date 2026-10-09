@@ -769,6 +769,7 @@ loadWallet(user);
   }
 
   const loginModal = document.getElementById("loginModal");
+
   if (loginModal) {
     loginModal.style.removeProperty("display");
     loginModal.classList.add("open");
@@ -776,8 +777,9 @@ loadWallet(user);
 
   setMode(false);
 }
- 
-const accountLogoutButton = accountOverlay.querySelector(".account-logout-menu");
+
+const accountLogoutButton =
+  accountOverlay.querySelector(".account-logout-menu");
 
 accountLogoutButton?.addEventListener("click", async () => {
   if (!supabase) return;
@@ -785,32 +787,15 @@ accountLogoutButton?.addEventListener("click", async () => {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
-    alert("Çıkış yapılamadı. Tekrar dene.");
+    alert("Çıkış yapılamadı: " + error.message);
     console.error(error);
     return;
   }
 
   accountOverlay.classList.remove("open");
+  accountOverlay.style.removeProperty("display");
   updateUser(null);
-
-  const loginModal = document.getElementById("loginModal");
-  if (loginModal) {
-    loginModal.classList.add("open");
-  }
 });
-   if (
-    window.ITEMSATIS_AUTH_USER &&
-    typeof window.itemsatisOpenProfile === "function"
-  ) {
-    window.itemsatisOpenProfile();
-    return;
-  }
-
-  const loginModal = document.getElementById("loginModal");
-if (loginModal) loginModal.classList.add("open");
-  setMode(false);
-}
-
   // Replace the existing top/bottom login hooks with the auth-aware handler.
   document.getElementById("bottomLogin")?.addEventListener("click", openAuth);
   document.getElementById("drawerLogin")?.addEventListener("click", () => {
