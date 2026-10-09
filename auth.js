@@ -765,7 +765,7 @@ loadWallet(user);
     accountOverlay.style.setProperty("display", "none", "important");
   }
 });
-  function openAuth() {
+function openAuth() {
   if (
     window.ITEMSATIS_AUTH_USER &&
     typeof window.itemsatisOpenProfile === "function"
@@ -777,8 +777,8 @@ loadWallet(user);
   const loginModal = document.getElementById("loginModal");
 
   if (loginModal) {
+    loginModal.classList.remove("open");
     loginModal.style.removeProperty("display");
-    loginModal.classList.add("open");
   }
 
   setMode(false);
