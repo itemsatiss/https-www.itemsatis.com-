@@ -1106,15 +1106,19 @@ function openSupportChat() {
     overlay.remove();
   };
 }
-/* GİRİŞ PENCERESİ KAPATMA DÜZELTMESİ */
-document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("loginModal");
-  const closeBtn = document.getElementById("loginClose");
+/* HESABIM PANELI KAPATMA DUZELTMESI */
+document.addEventListener("click", function (event) {
+  const closeButton = event.target.closest(".account-close");
 
-  if (closeBtn && modal) {
-    closeBtn.addEventListener("click", function () {
-      modal.classList.remove("open");
-      modal.style.display = "none";
-    });
+  if (closeButton) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const panel = document.querySelector(".account-overlay");
+
+    if (panel) {
+      panel.classList.remove("open");
+      panel.style.display = "none";
+    }
   }
-});
+}, true);
