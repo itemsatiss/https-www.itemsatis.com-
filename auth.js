@@ -1130,7 +1130,7 @@ function openSupportChat() {
     overlay.remove();
   };
 }
-/* KAPATMA BUTONLARI - DUZELTME */
+/* GIRIS VE HESAP KAPATMA DUZELTMESI */
 document.addEventListener("click", function (event) {
   const close = event.target.closest(
     "#loginClose, .account-close"
@@ -1144,13 +1144,13 @@ document.addEventListener("click", function (event) {
   const login = document.getElementById("loginModal");
   const account = document.querySelector(".account-overlay");
 
-  if (login) {
+  if (login && close.id === "loginClose") {
     login.classList.remove("open");
-    login.style.setProperty("display", "none", "important");
+    login.style.removeProperty("display");
   }
 
-  if (account) {
+  if (account && close.classList.contains("account-close")) {
     account.classList.remove("open");
-    account.style.setProperty("display", "none", "important");
+    account.style.removeProperty("display");
   }
 }, true);
