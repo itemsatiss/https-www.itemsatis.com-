@@ -982,6 +982,11 @@ adminScript.src = "admin.js";
 document.body.appendChild(adminScript);
 // CANLI DESTEK SİSTEMİ
 document.addEventListener("click", function (event) {
+  document.getElementById("loginClose")?.addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("loginModal")?.classList.remove("open");
+  document.getElementById("loginModal")?.style.setProperty("display", "none", "important");
+});
   if (event.target.closest("#supportOpen")) {
     openSupportChat();
   }
