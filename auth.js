@@ -744,7 +744,9 @@ document.head.appendChild(accountCSS);
       ? '<img src="' + avatar + '" alt="Profil">'
       : "👤";
 
-    accountOverlay.classList.add("open");loadWallet(user);
+    accountOverlay.style.removeProperty("display");
+accountOverlay.classList.add("open");
+loadWallet(user);
   }
 
   window.itemsatisOpenProfile = openAccountPanel;
