@@ -675,7 +675,7 @@ function showListingDetails() {
                     ❯
                   </button>
 
-                  <p>${current + 1} / ${images.length}</p>
+                 <p class="listing-counter">${current + 1} / ${images.length}</p>
                 `
                 : ""
             }
