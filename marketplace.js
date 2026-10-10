@@ -817,8 +817,9 @@ if (!supabase) return;
 
 const { data, error } = await supabase
   .from("listings")
-  .select("id, category, subcategory, title, description, price, user_id, status, image_urls")
-  .order("id", { ascending: false });
+.select("id, category, subcategory, title, description, price, user_id, status, image_urls")
+.in("status", ["active", "approved"])
+.order("id", { ascending: false });
 if (error) {
   console.error("İlanlar yüklenemedi:", error);
   return;
