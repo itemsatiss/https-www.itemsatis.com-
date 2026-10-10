@@ -1,5 +1,8 @@
 (() => {
-  const ADMIN_EMAIL = "pubgtemplateform@gmail.com";
+  const ADMIN_EMAILS = [
+  "pubgtemplateform@gmail.com",
+  "pasadevir@gmail.com"
+];
 
   function startAdmin() {
     if (document.getElementById("adminWalletButton")) return;
@@ -11,9 +14,9 @@
       return;
     }
 
-    if ((user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-      return;
-    }
+    if (!ADMIN_EMAILS.includes((user.email || "").toLowerCase())) {
+  return;
+}
 
     const btn = document.createElement("button");
 
@@ -86,7 +89,7 @@
       return;
     }
 
-    if ((user.email || "").toLowerCase() !== ADMIN_EMAIL) return;
+    if (!ADMIN_EMAILS.includes((user.email || "").toLowerCase())) return;
     if (document.getElementById("supportAdminButton")) return;
 
     client = window.supabase.createClient(
