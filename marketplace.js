@@ -453,23 +453,33 @@ ${p.image_urls && p.image_urls.length
       cart.reduce((total,item) => total + item.qty,0);
   }
 
-  function addToCart(id){
-    const product = products.find(p => p.id === id);
-    const existing = cart.find(p => p.id === id);
+  function addToCart(id) {
+  const product = products.find(
+    p => String(p.id) === String(id)
+  );
 
-    if(existing){
-      existing.qty++;
-    }else{
-      cart.push({...product,qty:1});
-    }
-
-    localStorage.setItem(
-      "itemsatis_cart",
-      JSON.stringify(cart)
-    );
-
-    updateCart();
+  if (!product) {
+    alert("Ürün bulunamadı. Sayfayı yenileyip tekrar dene.");
+    return;
   }
+
+  const existing = cart.find(
+    p => String(p.id) === String(id)
+  );
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+
+  localStorage.setItem(
+    "itemsatis_cart",
+    JSON.stringify(cart)
+  );
+
+  updateCart();
+}
 
   const drawer = document.createElement("div");
 
