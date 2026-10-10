@@ -1195,16 +1195,3 @@ wizard.classList.add(“open”);
 
 render(categories);
 })();
-    const button = event.target.closest(
-    ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
-  );
-
-  if (!button) return;
-
-  event.preventDefault();
-  reset();
-  wizard.classList.add("open");
-});
-
-  render(categories);
-})();
