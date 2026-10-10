@@ -656,6 +656,7 @@ function showListingDetails() {
         ? `
           <div style="position:relative;text-align:center">
             <img
+              class="is-detail-image"
               src="${images[current]}"
               alt="İlan fotoğrafı"
               style="width:100%;max-height:350px;object-fit:contain;border-radius:12px"
@@ -665,10 +666,14 @@ function showListingDetails() {
               images.length > 1
                 ? `
                   <button class="listing-prev"
-                    style="position:absolute;left:8px;top:45%;font-size:24px">❮</button>
+                    style="position:absolute;left:8px;top:45%;font-size:24px">
+                    ❮
+                  </button>
 
                   <button class="listing-next"
-                    style="position:absolute;right:8px;top:45%;font-size:24px">❯</button>
+                    style="position:absolute;right:8px;top:45%;font-size:24px">
+                    ❯
+                  </button>
 
                   <p>${current + 1} / ${images.length}</p>
                 `
@@ -679,18 +684,33 @@ function showListingDetails() {
         : `<p>Bu ilanda fotoğraf bulunmuyor.</p>`
     }
 
+    <h3>İlan Açıklaması</h3>
+
     <p style="white-space:pre-wrap;overflow-wrap:anywhere">
-      ${product.description}
+      ${product.description || "Açıklama bulunmuyor."}
     </p>
 
     <p class="is-note">Satıcı: ${product.seller}</p>
 
     <div class="is-detailprice">${money(product.price)}</div>
 
-    <button class="is-checkout" data-buy="${product.id}">
-      Sepete Ekle
-    </button>
+    <div style="display:flex;gap:10px;margin-top:15px">
+      <button
+        class="is-checkout"
+        data-buy="${product.id}"
+        style="flex:1">
+        🛒 Sepete Ekle
+      </button>
+
+      <button
+        class="is-checkout"
+        data-now="${product.id}"
+        style="flex:1;background:#5145ff">
+        ⚡ Hemen Satın Al
+      </button>
+    </div>
   `;
+}
 }
 
 showListingDetails();
@@ -796,6 +816,48 @@ if (prev || next) {
   const counter = detail.querySelector(".is-detailcontent p");
   if (counter && counter.textContent.includes("/")) {
     counter.textContent = `${current + 1} / ${total}`;
+  }
+
+  return;
+}
+const buyNow = event.target.closest("[data-now]");
+
+if (buyNow) {
+  const supabase = window.itemsatisSupabase;
+  const listingId = buyNow.dataset.now;
+
+  if (!supabase) {
+    alert("Veritabanı bağlantısı bulunamadı.");
+    return;
+  }
+
+  buyNow.disabled = true;
+  buyNow.textContent = "İşleniyor...";
+
+  try {
+    const { data, error } = await supabase.rpc(
+      "purchase_listing",
+      {
+        p_listing_id: listingId
+      }
+    );
+
+    if (error) throw error;
+
+    if (data && data.success === true) {
+      alert("Satın alma başarılı!");
+
+      detail.classList.remove("open");
+
+      await loadRealListings();
+    } else {
+      alert(data?.message || "Satın alma gerçekleştirilemedi.");
+    }
+  } catch (error) {
+    alert(error.message || "Satın alma sırasında hata oluştu.");
+  } finally {
+    buyNow.disabled = false;
+    buyNow.textContent = "⚡ Hemen Satın Al";
   }
 
   return;
