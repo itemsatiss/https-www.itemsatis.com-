@@ -1031,7 +1031,64 @@ try {
       return;
     }
 
-    alert("İlan detayları tamamlandı! Sonraki adımda görsel yükleme ve Supabase kaydını ekleyeceğiz.");
+    const content = wizard.querySelector(".iw-content");
+
+content.innerHTML = `
+  <div class="iw-heading">
+    <button class="iw-back" type="button">←</button>
+    <h2>İlan Görselleri</h2>
+  </div>
+
+  <p style="color:#aaa;margin-bottom:16px">
+    İlanın için fotoğraf seç.
+  </p>
+
+  <label for="iw-images">Fotoğraflar</label>
+  <input
+    id="iw-images"
+    class="iw-search"
+    type="file"
+    accept="image/*"
+    multiple
+  >
+
+  <div id="iw-preview"
+    style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+  </div>
+
+  <button id="iw-publish" class="iw-next" type="button">
+    İlanı Yayınla →
+  </button>
+`;
+
+content.querySelector(".iw-back").addEventListener("click", reset);
+
+const imageInput = content.querySelector("#iw-images");
+const preview = content.querySelector("#iw-preview");
+
+imageInput.addEventListener("change", () => {
+  preview.innerHTML = "";
+
+  [...imageInput.files].slice(0, 5).forEach(file => {
+    if (!file.type.startsWith("image/")) return;
+
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.style.cssText =
+      "width:100%;height:130px;object-fit:cover;border-radius:10px";
+
+    preview.appendChild(img);
+  });
+});
+
+content.querySelector("#iw-publish").addEventListener("click", () => {
+  if (!imageInput.files.length) {
+    alert("Lütfen en az bir fotoğraf seç.");
+    return;
+  }
+
+  alert("Fotoğraflar seçildi! Şimdi Supabase'e yükleme ve ilanı kaydetme bağlantısını ekleyeceğiz.");
+});
   });
 });
 
