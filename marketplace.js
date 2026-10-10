@@ -780,7 +780,7 @@ detail.classList.add("open");
     }
   });
 
-  detail.addEventListener("click",event => {
+  detail.addEventListener("click", async event => {
 
     if(
       event.target === detail ||
