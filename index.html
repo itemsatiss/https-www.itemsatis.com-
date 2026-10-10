@@ -96,10 +96,6 @@
 document.getElementById('drawer').classList.remove('open');
 document.body.style.overflow = '';
     window.scrollTo(0, 0);
-    document.body.style.transform = 'translateZ(0)';
-requestAnimationFrame(() => {
-  document.body.style.transform = '';
-});
   } else {
     alert('İlan Pazarı bulunamadı.');
   }
