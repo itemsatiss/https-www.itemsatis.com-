@@ -587,31 +587,65 @@ ${p.image_urls && p.image_urls.length
     if(event.target.closest("h3")){
       const product = products.find(p => p.id === id);
 
-      detail.querySelector(".is-detailcontent").innerHTML = `
-        <div class="is-badge">${product.cat}</div>
+      const product = products.find(p => String(p.id) === String(id));
 
-        <h2>${product.title}</h2>
+if (!product) return;
 
-        <p class="is-note">
-          Satıcı: ${product.seller}
-        </p>
+product.currentImage = 0;
 
-        <div class="is-detailprice">
-          ${money(product.price)}
-        </div>
+function showListingDetails() {
+  const images = product.image_urls || [];
+  const current = product.currentImage || 0;
 
-        <p class="is-note">
-          Ürün satın alma işlemi hesabınızla
-          devam eder.
-        </p>
+  detail.querySelector(".is-detailcontent").innerHTML = `
+    <div class="is-badge">${product.cat}</div>
 
-        <button class="is-checkout"
-                data-buy="${product.id}">
-          Sepete Ekle
-        </button>
-      `;
+    <h2>${product.title}</h2>
 
-      detail.classList.add("open");
+    ${
+      images.length
+        ? `
+          <div style="position:relative;text-align:center">
+            <img
+              src="${images[current]}"
+              alt="İlan fotoğrafı"
+              style="width:100%;max-height:350px;object-fit:contain;border-radius:12px"
+            >
+
+            ${
+              images.length > 1
+                ? `
+                  <button class="listing-prev"
+                    style="position:absolute;left:8px;top:45%;font-size:24px">❮</button>
+
+                  <button class="listing-next"
+                    style="position:absolute;right:8px;top:45%;font-size:24px">❯</button>
+
+                  <p>${current + 1} / ${images.length}</p>
+                `
+                : ""
+            }
+          </div>
+        `
+        : `<p>Bu ilanda fotoğraf bulunmuyor.</p>`
+    }
+
+    <p style="white-space:pre-wrap;overflow-wrap:anywhere">
+      ${product.description}
+    </p>
+
+    <p class="is-note">Satıcı: ${product.seller}</p>
+
+    <div class="is-detailprice">${money(product.price)}</div>
+
+    <button class="is-checkout" data-buy="${product.id}">
+      Sepete Ekle
+    </button>
+  `;
+}
+
+showListingDetails();
+detail.classList.add("open");
     }
   });
 
@@ -686,7 +720,37 @@ ${p.image_urls && p.image_urls.length
       detail.classList.remove("open");
       return;
     }
+const prev = event.target.closest(".listing-prev");
+const next = event.target.closest(".listing-next");
 
+if (prev || next) {
+  const productId = detail.querySelector("[data-buy]")?.dataset.buy;
+
+  const product = products.find(
+    p => String(p.id) === String(productId)
+  );
+
+  if (!product || !product.image_urls?.length) return;
+
+  const total = product.image_urls.length;
+
+  product.currentImage = prev
+    ? (product.currentImage - 1 + total) % total
+    : (product.currentImage + 1) % total;
+
+  const images = product.image_urls;
+  const current = product.currentImage;
+
+  const img = detail.querySelector(".is-detailcontent img");
+  if (img) img.src = images[current];
+
+  const counter = detail.querySelector(".is-detailcontent p");
+  if (counter && counter.textContent.includes("/")) {
+    counter.textContent = `${current + 1} / ${total}`;
+  }
+
+  return;
+}
     const buy = event.target.closest("[data-buy]");
 
     if(buy){
@@ -704,7 +768,7 @@ if (!supabase) return;
 
 const { data, error } = await supabase
   .from("listings")
-  .select("id, category, subcategory, title, price, user_id, status, image_urls")
+  .select("id, category, subcategory, title, description, price, user_id, status, image_urls")
   .order("id", { ascending: false });
 if (error) {
   console.error("İlanlar yüklenemedi:", error);
@@ -715,10 +779,11 @@ products.length = 0;
   products.push({
     id: item.id,
     cat: item.subcategory || item.category || "Diğer",
-    title: item.title,
-    price: Number(item.price),
-    seller: "Satıcı",
-  image_urls: item.image_urls || []
+   title: item.title,
+description: item.description || "Açıklama eklenmemiş.",
+price: Number(item.price),
+seller: "Satıcı",
+image_urls: item.image_urls || []
   });
 });
 render();
