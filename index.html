@@ -91,10 +91,7 @@
 
   if (market) {
     market.style.display = 'block';
-    market.style.visibility = 'hidden';
-requestAnimationFrame(() => {
-  market.style.visibility = 'visible';
-});
+    
     document.querySelector('.site').style.display = 'none';
     document.getElementById('shade').classList.remove('open');
 document.getElementById('drawer').classList.remove('open');
