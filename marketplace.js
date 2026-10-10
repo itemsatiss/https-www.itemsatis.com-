@@ -347,7 +347,15 @@ try {
 
   const market = document.createElement("section");
     market.className = "is-market";
-
+    const backBtn = document.createElement("button");
+backBtn.textContent = "← Anasayfaya Dön";
+backBtn.style.cssText = "padding:12px 18px;margin:12px;border-radius:10px;border:0;cursor:pointer;";
+backBtn.onclick = () => {
+  market.style.display = "none";
+  home.style.display = "";
+  window.scrollTo(0, 0);
+};
+market.style.display = "none";
   market.innerHTML = `
     <div class="is-market-head">
       <h1>İtemSatış İlan Pazarı</h1>
@@ -378,16 +386,16 @@ try {
       <div class="is-results"></div>
     </div>
   `;
-
+market.prepend(backBtn);
   const showcase =
     document.querySelector(".showcase") ||
     document.querySelector(".quick-reference");
+const home = document.querySelector(".site");
 
-  if(showcase){
-    showcase.parentNode.insertBefore(market,showcase);
-  }else{
+
+  
     document.body.appendChild(market);
-  }
+  
 
   const results = market.querySelector(".is-results");
   const search = market.querySelector(".is-market-bar .is-search");
