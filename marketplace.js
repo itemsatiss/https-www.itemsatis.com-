@@ -393,7 +393,7 @@ market.prepend(backBtn);
 const home = document.querySelector(".site");
 
 
-  
+
     document.body.appendChild(market);
   
 
