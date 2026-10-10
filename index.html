@@ -81,7 +81,10 @@
   <div class="drawer-top">
     <button id="menuClose">×</button><strong>item<span>satış</span></strong><button id="drawerLogin">◎</button>
   </div>
-  <div class="drawer-actions"><button>＋ &nbsp; İlan Ekle</button><button>♧ &nbsp; İlan Pazarı</button></div>
+  <div class="drawer-actions">
+  <button>＋ &nbsp; İlan Ekle</button>
+  <button onclick="document.querySelector('.is-market')?.scrollIntoView({behavior:'smooth'})">♧ &nbsp; İlan Pazarı</button>
+</div>
   <div class="drawer-list">
     <button>⌂ <span>Anasayfa</span><small>₺ &nbsp; TRY &nbsp; 🇹🇷 EN</small></button>
     <button>◉ <span>Destek Sistemi</span></button>
