@@ -346,9 +346,6 @@ try {
   document.head.appendChild(style);
 
   const market = document.createElement("section");
-market.style.display = "none";
-market.style.position = "relative";
-market.style.zIndex = "10";
     market.className = "is-market";
 
   market.innerHTML = `
