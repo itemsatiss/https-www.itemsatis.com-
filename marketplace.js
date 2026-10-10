@@ -1,7 +1,7 @@
 (() => {
   const products = [];
     
-  ];
+  
 
   const categories = [
     "Tümü","Valorant","Roblox","Discord","Steam","PUBG Mobile",
