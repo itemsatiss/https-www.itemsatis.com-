@@ -1277,7 +1277,7 @@ window.ilanFormData = {
   imageInput.addEventListener("change", () => {
     preview.innerHTML = "";
 
-    [...imageInput.files].slice(0, 5).forEach(file => {
+    [...imageInput.files].slice(0, 12).forEach(file => {
       if (!file.type.startsWith("image/")) return;
 
       const img = document.createElement("img");
