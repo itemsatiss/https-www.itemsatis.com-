@@ -1307,7 +1307,7 @@ listing_type: formData.type,
         description,
         price,
         image_urls: imageUrls,
-        status: "pending"
+        status: "active"
       });
 
     if (insertError) throw insertError;
