@@ -1093,9 +1093,11 @@ document.getElementById("supportNotice")?.remove();
       `;
 
       messagesBox.appendChild(bubble);
-    notice.remove();
-localStorage.removeItem("itemsatis_support_notice");
-      lastMessageId = Math.max(lastMessageId, Number(item.id) || 0);
+
+lastMessageId = Math.max(
+  lastMessageId,
+  Number(item.id) || 0
+);
     });
 
     messagesBox.scrollTop = messagesBox.scrollHeight;
