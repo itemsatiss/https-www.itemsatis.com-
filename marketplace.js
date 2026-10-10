@@ -1334,9 +1334,9 @@ const type = formData?.type;
     for (const file of [...imageInput.files].slice(0, 5)) {
       if (!file.type.startsWith("image/")) continue;
 
-      if (file.size > 5 * 1024 * 1024) {
-        throw new Error("Her fotoğraf en fazla 5 MB olabilir.");
-      }
+      if (file.size > 10 * 1024 * 1024) {
+  throw new Error("Her fotoğraf en fazla 10 MB olabilir.");
+}
 
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
       const path = `${user.id}/${crypto.randomUUID()}-${safeName}`;
