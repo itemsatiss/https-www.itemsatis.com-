@@ -552,7 +552,7 @@ ${p.image_urls && p.image_urls.length
 
   document.body.appendChild(detail);
 
-  market.addEventListener("click",event => {
+  market.addEventListener("click", async event => {
 
     const category = event.target.closest(".is-cat");
 
@@ -588,11 +588,44 @@ if (event.target.closest(".is-profile-logout")) {
       return;
     }
 
-    if(event.target.closest(".is-buy")){
-      addToCart(id);
-      openCart();
-      return;
+    if (event.target.closest(".is-buy")) {
+    const supabase = window.itemsatisSupabase;
+    const user = window.currentUser;
+
+    if (!supabase) {
+        alert("Bağlantı kurulamadı. Sayfayı yenile.");
+        return;
     }
+
+    if (!user || !user.id) {
+        alert("Satın almak için önce giriş yapmalısın.");
+        if (typeof openLogin === "function") openLogin();
+        return;
+    }
+
+    const product = products.find(p => String(p.id) === String(id));
+    if (!product) {
+        alert("İlan bulunamadı.");
+        return;
+    }
+
+    if (!confirm(product.title + " ilanını " + product.price + " TL karşılığında satın almak istiyor musun?")) {
+        return;
+    }
+
+    const { data, error } = await supabase.rpc("purchase_listing", {
+        p_listing_id: product.id
+    });
+
+    if (error) {
+        alert("Satın alma başarısız: " + error.message);
+        return;
+    }
+
+    alert("Satın alma işlemi başarılı!");
+    await loadRealListings();
+    return;
+}
 
     if(event.target.closest("h3")){
       
