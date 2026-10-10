@@ -1,15 +1,6 @@
 (() => {
-  const products = [
-    {id:1,cat:"Steam",title:"Steam İstediğiniz 3 Oyun",price:60,seller:"Eson"},
-    {id:2,cat:"Discord",title:"STOKVAR | 7/24 | 14X BOOST 1 HAFTALIK",price:32.90,seller:"BerilStore"},
-    {id:3,cat:"Valorant",title:"Champions 25 Setli 2 Vandal +500Vpli Gümüş Hesap",price:1900,seller:"yusufbalka61"},
-    {id:4,cat:"Steam",title:"Steam Random Key 200$",price:19.90,seller:"Eson"},
-    {id:5,cat:"Instagram",title:"Instagram Takipçi 1.000",price:89.90,seller:"StellMarket"},
-    {id:6,cat:"Yapay Zeka",title:"Antigravity Pro +3 Ay",price:129.90,seller:"Eson"},
-    {id:7,cat:"Facebook",title:"Facebook Reklam Hesabı",price:299,seller:"Prenses2026"},
-    {id:8,cat:"Rust",title:"Rust Round 53 Twitch Drop",price:15,seller:"StellMarket"},
-    {id:9,cat:"Youtube",title:"Youtube Keşfet Paketi",price:30,seller:"Eson"},
-    {id:10,cat:"Discord",title:"STOKVAR | 7/24 | 20X BOOST 1 AYLIK",price:117.90,seller:"BerilStore"}
+  const products = [];
+    
   ];
 
   const categories = [
