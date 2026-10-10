@@ -1106,10 +1106,13 @@ window.ilanFormData = {
     return;
   }
 
-  const title = content.querySelector("#iw-title")?.value?.trim();
-  const description = content.querySelector("#iw-description")?.value?.trim();
-  const price = Number(content.querySelector("#iw-price")?.value);
+  const formData = window.ilanFormData;
 
+const title = formData?.title;
+const description = formData?.description;
+const price = Number(formData?.price);
+const type = formData?.type;
+  
   if (!title || !description || !Number.isFinite(price) || price < 30) {
     alert("İlan bilgileri eksik veya fiyat 30 TL'den düşük.");
     return;
@@ -1152,9 +1155,9 @@ window.ilanFormData = {
       .from("listings")
       .insert({
         user_id: user.id,
-        category: currentCategory.name,
-        subcategory: currentSubcategory,
-        listing_type: type,
+        category: formData.category,
+subcategory: formData.subcategory,
+listing_type: formData.type,
         title,
         description,
         price,
@@ -1176,7 +1179,6 @@ window.ilanFormData = {
       publishButton.textContent = "İlanı Yayınla";
     }
   }
-});
 });
   const button = event.target.closest(
     ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
