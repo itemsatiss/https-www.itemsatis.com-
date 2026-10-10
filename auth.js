@@ -1068,6 +1068,9 @@ function openSupportChat() {
 
     messagesBox.innerHTML = "";
 
+
+localStorage.removeItem("itemsatis_support_notice");
+document.getElementById("supportNotice")?.remove();
     if (!data.length) {
       messagesBox.innerHTML =
         '<div class="support-welcome">Merhaba 👋<br>Size nasıl yardımcı olabiliriz?</div>';
@@ -1090,13 +1093,8 @@ function openSupportChat() {
       `;
 
       messagesBox.appendChild(bubble);
-    if (
-  item.sender === "support" &&
-  Number(item.id) > Number(localStorage.getItem("itemsatis_last_support_read") || 0)
-) {
-  localStorage.setItem("itemsatis_support_notice", "1");
-  showSupportNotice();
-}
+    notice.remove();
+localStorage.removeItem("itemsatis_support_notice");
       lastMessageId = Math.max(lastMessageId, Number(item.id) || 0);
     });
 
