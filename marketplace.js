@@ -1075,14 +1075,101 @@ try {
     });
   });
 
-  content.querySelector("#iw-publish").addEventListener("click", () => {
-    if (!imageInput.files.length) {
-      alert("Lütfen en az bir fotoğraf seç.");
-      return;
+  content.querySelector("#iw-publish").addEventListener("click", async () => {
+  const publishButton = content.querySelector("#iw-publish");
+  const supabase = window.itemsatisSupabase;
+
+  if (!supabase) {
+    alert("Supabase bağlantısı bulunamadı. Sayfayı yenileyip tekrar dene.");
+    return;
+  }
+
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
+
+  const user = sessionData?.session?.user;
+
+  if (sessionError || !user) {
+    alert("İlan vermek için önce hesabına giriş yapmalısın.");
+    return;
+  }
+
+  if (!imageInput.files.length) {
+    alert("Lütfen en az bir fotoğraf seç.");
+    return;
+  }
+
+  const title = content.querySelector("#iw-title")?.value?.trim();
+  const description = content.querySelector("#iw-description")?.value?.trim();
+  const price = Number(content.querySelector("#iw-price")?.value);
+
+  if (!title || !description || !Number.isFinite(price) || price < 30) {
+    alert("İlan bilgileri eksik veya fiyat 30 TL'den düşük.");
+    return;
+  }
+
+  publishButton.disabled = true;
+  publishButton.textContent = "İlan yayınlanıyor...";
+
+  try {
+    const imageUrls = [];
+
+    for (const file of [...imageInput.files].slice(0, 5)) {
+      if (!file.type.startsWith("image/")) continue;
+
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error("Her fotoğraf en fazla 5 MB olabilir.");
+      }
+
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${user.id}/${crypto.randomUUID()}-${safeName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("listing-images")
+        .upload(path, file, { upsert: false });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from("listing-images")
+        .getPublicUrl(path);
+
+      imageUrls.push(urlData.publicUrl);
     }
 
-    alert("Fotoğraflar seçildi. İlanı Supabase'e kaydetme adımına geçeceğiz.");
-  });
+    if (!imageUrls.length) {
+      throw new Error("Geçerli bir fotoğraf seçmelisin.");
+    }
+
+    const { error: insertError } = await supabase
+      .from("listings")
+      .insert({
+        user_id: user.id,
+        category: currentCategory.name,
+        subcategory: currentSubcategory,
+        listing_type: type,
+        title,
+        description,
+        price,
+        image_urls: imageUrls,
+        status: "pending"
+      });
+
+    if (insertError) throw insertError;
+
+    alert("İlanın başarıyla kaydedildi! Onay bekliyor.");
+    reset();
+    wizard.classList.remove("open");
+  } catch (error) {
+    console.error("İlan yayınlama hatası:", error);
+    alert("İlan kaydedilemedi: " + (error.message || "Bilinmeyen hata"));
+  } finally {
+    if (publishButton.isConnected) {
+      publishButton.disabled = false;
+      publishButton.textContent = "İlanı Yayınla";
+    }
+  }
+});
 });
   const button = event.target.closest(
     ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
