@@ -1,4 +1,4 @@
-((() => {
+(() => {
   const products = [
     {id:1,cat:"Steam",title:"Steam İstediğiniz 3 Oyun",price:60,seller:"Eson"},
     {id:2,cat:"Discord",title:"STOKVAR | 7/24 | 14X BOOST 1 HAFTALIK",price:32.90,seller:"BerilStore"},
