@@ -1026,7 +1026,14 @@ try {
   const description = content.querySelector("#iw-description").value.trim();
   const price = Number(content.querySelector("#iw-price").value);
   const type = content.querySelector("#iw-type").value;
-
+window.ilanFormData = {
+  title,
+  description,
+  price,
+  type,
+  category: currentCategory.name,
+  subcategory: currentSubcategory
+};
   if (!title || !description || !Number.isFinite(price) || price < 30) {
     alert("Başlık ve açıklama gir; fiyat en az 30 TL olmalı.");
     return;
