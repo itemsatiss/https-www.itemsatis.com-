@@ -695,6 +695,34 @@ const home = document.querySelector(".site");
 
   render();
 
+async function loadRealListings() {
+const supabase = window.itemsatisSupabase;
+if (!supabase) return;
+
+const { data, error } = await supabase
+  .from("listings")
+  .select("id, category, subcategory, title, price, user_id, status")
+  .order("id", { ascending: false });
+if (error) {
+  console.error("İlanlar yüklenemedi:", error);
+  return;
+}
+products.length = 0;
+(data || []).forEach(item => {
+  products.push({
+    id: item.id,
+    cat: item.subcategory || item.category || "Diğer",
+    title: item.title,
+    price: Number(item.price),
+    seller: "Satıcı"
+  });
+});
+render();
+
+}
+
+loadRealListings();
+
 })();
 /* İLAN EKLE — KATEGORİ SEÇİM EKRANI */
 (() => {
