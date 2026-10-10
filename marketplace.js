@@ -1181,7 +1181,7 @@ listing_type: formData.type,
   }
 });
   });
-
+});
 document.addEventListener("click", event => {
     const button = event.target.closest(
     ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
