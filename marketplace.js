@@ -1183,14 +1183,14 @@ listing_type: formData.type,
 
 document.addEventListener("click", event => {
 const button = event.target.closest(
-“.drawer-actions button:first-child, #addListingButton, .add-listing-btn”
+".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
 );
 
 if (!button) return;
 
 event.preventDefault();
 reset();
-wizard.classList.add(“open”);
+wizard.classList.add("open");
 });
 
 render(categories);
