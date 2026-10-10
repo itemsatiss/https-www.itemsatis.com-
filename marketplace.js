@@ -590,7 +590,13 @@ if (event.target.closest(".is-profile-logout")) {
 
     if (event.target.closest(".is-buy")) {
     const supabase = window.itemsatisSupabase;
-    const user = window.currentUser;
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+if (authError || !user) {
+    alert("Satın almak için önce giriş yapmalısın.");
+    if (typeof openLogin === "function") openLogin();
+    return;
+}
 
     if (!supabase) {
         alert("Bağlantı kurulamadı. Sayfayı yenile.");
