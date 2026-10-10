@@ -633,7 +633,7 @@ if (authError || !user) {
     return;
 }
 
-    if(event.target.closest("h3")){
+    if (!event.target.closest("button")) {
       
 
       const product = products.find(p => String(p.id) === String(id));
