@@ -1090,6 +1090,10 @@ function openSupportChat() {
       `;
 
       messagesBox.appendChild(bubble);
+      if (item.sender === "support") {
+  localStorage.setItem("itemsatis_support_notice", "1");
+  showSupportNotice();
+}
       lastMessageId = Math.max(lastMessageId, Number(item.id) || 0);
     });
 
@@ -1173,3 +1177,40 @@ account.style.setProperty("display", "none", "important");
     login.style.removeProperty("display");
   }
 }, true);
+function showSupportNotice() {
+  let notice = document.getElementById("supportNotice");
+
+  if (!notice) {
+    notice = document.createElement("button");
+    notice.id = "supportNotice";
+    notice.textContent = "🔔 Canlı destekten mesajın var!";
+    notice.style.cssText = `
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 90px;
+      z-index: 9999999;
+      padding: 16px;
+      border: 0;
+      border-radius: 14px;
+      background: #5144d7;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 5px 20px #0005;
+      cursor: pointer;
+    `;
+
+    notice.onclick = function () {
+      openSupportChat();
+      notice.remove();
+      localStorage.removeItem("itemsatis_support_notice");
+    };
+
+    document.body.appendChild(notice);
+  }
+}
+
+if (localStorage.getItem("itemsatis_support_notice") === "1") {
+  showSupportNotice();
+}
