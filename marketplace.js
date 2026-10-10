@@ -585,7 +585,7 @@ ${p.image_urls && p.image_urls.length
     }
 
     if(event.target.closest("h3")){
-      const product = products.find(p => p.id === id);
+      
 
       const product = products.find(p => String(p.id) === String(id));
 
