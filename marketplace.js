@@ -561,20 +561,25 @@ ${p.image_urls && p.image_urls.length
       return;
      }   
     if(
-      event.target === profilePanel ||
-      event.target.closest(".is-profile-close")
-    ){
-      closeProfile();
-      return;
-    }
+      if (
+  event.target.closest(".is-profile-close")
+) {
+  if (typeof closeProfile === "function") {
+    closeProfile();
+  }
+  return;
+}
 
-    if(event.target.closest(".is-profile-logout")){
-      closeProfile();
+    if (event.target.closest(".is-profile-logout")) {
+  if (typeof closeProfile === "function") {
+    closeProfile();
+  }
 
-      if(typeof openLogin === "function"){
-        openLogin();
-      }
-    }
+  if (typeof openLogin === "function") {
+    openLogin();
+  }
+  return;
+}
   
 
     const card = event.target.closest(".is-card");
