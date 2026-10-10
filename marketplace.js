@@ -416,7 +416,10 @@ const home = document.querySelector(".site");
             <span class="is-badge">${p.cat}</span>
             <span class="is-price">${money(p.price)}</span>
           </div>
-
+${p.image_urls && p.image_urls.length
+  ? `<img src="${p.image_urls[0]}" alt="${p.title}"
+       style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin:10px 0;">`
+  : ""}
           <h3>${p.title}</h3>
 
           <div class="is-seller">
@@ -701,7 +704,7 @@ if (!supabase) return;
 
 const { data, error } = await supabase
   .from("listings")
-  .select("id, category, subcategory, title, price, user_id, status")
+  .select("id, category, subcategory, title, price, user_id, status, image_urls")
   .order("id", { ascending: false });
 if (error) {
   console.error("İlanlar yüklenemedi:", error);
@@ -714,7 +717,8 @@ products.length = 0;
     cat: item.subcategory || item.category || "Diğer",
     title: item.title,
     price: Number(item.price),
-    seller: "Satıcı"
+    seller: "Satıcı",
+  image_urls: item.image_urls || []
   });
 });
 render();
