@@ -560,17 +560,14 @@ ${p.image_urls && p.image_urls.length
       selectedCategory = category.dataset.cat;render();
       return;
      }   
-    if(
-      if (
-  event.target.closest(".is-profile-close")
-) {
+    if (event.target.closest(".is-profile-close")) {
   if (typeof closeProfile === "function") {
     closeProfile();
   }
   return;
 }
 
-    if (event.target.closest(".is-profile-logout")) {
+if (event.target.closest(".is-profile-logout")) {
   if (typeof closeProfile === "function") {
     closeProfile();
   }
@@ -580,8 +577,6 @@ ${p.image_urls && p.image_urls.length
   }
   return;
 }
-  
-
     const card = event.target.closest(".is-card");
 
     if(!card) return;
