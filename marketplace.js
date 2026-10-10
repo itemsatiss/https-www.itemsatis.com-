@@ -347,7 +347,7 @@ try {
 
   const market = document.createElement("section");
   market.className = "is-market";
-
+market.style.display = "none";
   market.innerHTML = `
     <div class="is-market-head">
       <h1>İtemSatış İlan Pazarı</h1>
