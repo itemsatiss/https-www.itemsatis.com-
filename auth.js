@@ -1218,3 +1218,58 @@ function showSupportNotice() {
 if (localStorage.getItem("itemsatis_support_notice") === "1") {
   showSupportNotice();
 }
+// CANLI DESTEK YENİ MESAJ BİLDİRİMİ
+(function () {
+  let client = null;
+  let currentUserId = null;
+  let lastSeenId = 0;
+  let initialized = false;
+
+  async function checkSupportNotice() {
+    const user = window.ITEMSATIS_AUTH_USER;
+    if (!user || !user.id) return;
+
+    if (!client) {
+      client = window.supabase.createClient(
+        window.ITEMSATIS_SUPABASE_URL,
+        window.ITEMSATIS_SUPABASE_ANON_KEY
+      );
+    }
+
+    if (currentUserId !== user.id) {
+      currentUserId = user.id;
+      lastSeenId = 0;
+      initialized = false;
+    }
+
+    const { data, error } = await client
+      .from("support_messages")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("sender", "support")
+      .order("id", { ascending: false })
+      .limit(1);
+
+    if (error || !data || !data.length) return;
+
+    const newestId = Number(data[0].id);
+
+    if (!initialized) {
+      lastSeenId = newestId;
+      initialized = true;
+      return;
+    }
+
+    if (newestId > lastSeenId) {
+      lastSeenId = newestId;
+
+      if (!document.getElementById("supportChatOverlay")) {
+        localStorage.setItem("itemsatis_support_notice", "1");
+        showSupportNotice();
+      }
+    }
+  }
+
+  setInterval(checkSupportNotice, 4000);
+  checkSupportNotice();
+})();
