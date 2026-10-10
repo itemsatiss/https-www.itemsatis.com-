@@ -743,8 +743,8 @@ detail.classList.add("open");
 
     if(remove){
       cart = cart.filter(
-        String(item.id) !== String(remove.dataset.id)
-      );
+  item => String(item.id) !== String(remove.dataset.id)
+);
 
       localStorage.setItem(
         "itemsatis_cart",
