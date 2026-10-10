@@ -1090,7 +1090,10 @@ function openSupportChat() {
       `;
 
       messagesBox.appendChild(bubble);
-      if (item.sender === "support") {
+    if (
+  item.sender === "support" &&
+  Number(item.id) > Number(localStorage.getItem("itemsatis_last_support_read") || 0)
+) {
   localStorage.setItem("itemsatis_support_notice", "1");
   showSupportNotice();
 }
@@ -1203,7 +1206,8 @@ function showSupportNotice() {
 
     notice.onclick = function () {
       openSupportChat();
-      notice.remove();
+     
+       notice.remove();
       localStorage.removeItem("itemsatis_support_notice");
     };
 
