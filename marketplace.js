@@ -711,7 +711,6 @@ function showListingDetails() {
     </div>
   `;
 }
-}
 
 showListingDetails();
 detail.classList.add("open");
