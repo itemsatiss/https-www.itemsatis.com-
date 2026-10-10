@@ -84,17 +84,18 @@
   <div class="drawer-actions">
   <button>＋ &nbsp; İlan Ekle</button>
   <button onclick="
-    document.getElementById('drawer').classList.remove('open');
-    document.getElementById('shade').classList.remove('open');
-    setTimeout(() => {
-      const market = document.querySelector('.is-market');
-      if (market) {
-        market.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('İlan Pazarı yüklenemedi.');
-      }
-    }, 300);
-  ">♧ &nbsp; İlan Pazarı</button>
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('shade').classList.remove('open');
+
+  const market = document.querySelector('.is-market');
+
+  if (market) {
+    market.style.display = 'block';
+    market.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    alert('İlan Pazarı bulunamadı.');
+  }
+">♧ &nbsp; İlan Pazarı</button>
 </div>
   <div class="drawer-list">
     <button>⌂ <span>Anasayfa</span><small>₺ &nbsp; TRY &nbsp; 🇹🇷 EN</small></button>
