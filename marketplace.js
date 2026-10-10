@@ -1180,7 +1180,12 @@ listing_type: formData.type,
     }
   }
 });
-  const button = event.target.closest(
+  });
+
+});
+
+document.addEventListener("click", event => {
+    const button = event.target.closest(
     ".drawer-actions button:first-child, #addListingButton, .add-listing-btn"
   );
 
