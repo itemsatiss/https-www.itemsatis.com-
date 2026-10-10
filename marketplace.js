@@ -571,7 +571,7 @@ ${p.image_urls && p.image_urls.length
 
     if(!card) return;
 
-    const id = Number(card.dataset.id);
+    const id = card.dataset.id;
 
     if(event.target.closest(".is-add")){
       addToCart(id);
@@ -640,7 +640,7 @@ ${p.image_urls && p.image_urls.length
 
     if(remove){
       cart = cart.filter(
-        item => item.id !== Number(remove.dataset.id)
+        String(item.id) !== String(remove.dataset.id)
       );
 
       localStorage.setItem(
@@ -690,7 +690,7 @@ ${p.image_urls && p.image_urls.length
     const buy = event.target.closest("[data-buy]");
 
     if(buy){
-      addToCart(Number(buy.dataset.buy));
+      addToCart(buy.dataset.buy);
       detail.classList.remove("open");
       openCart();
     }
