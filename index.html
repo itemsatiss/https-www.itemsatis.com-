@@ -91,6 +91,7 @@
 
   if (market) {
     market.style.display = 'block';
+    document.querySelector('.site').style.display = 'none';
     market.scrollIntoView({ behavior: 'smooth' });
   } else {
     alert('İlan Pazarı bulunamadı.');
