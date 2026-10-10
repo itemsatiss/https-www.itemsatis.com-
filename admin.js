@@ -77,7 +77,10 @@
 })();
 // CANLI DESTEK YÖNETİMİ
 (function () {
-  const ADMIN_EMAIL = "pubgtemplateform@gmail.com";
+  const ADMIN_EMAILS = [
+  "pubgtemplateform@gmail.com",
+  "pasadevir@gmail.com"
+];
   let client;
   let selectedUser = null;
 
