@@ -980,6 +980,7 @@ async function loadWallet(user) {
       window.ITEMSATIS_SUPABASE_URL,
       window.ITEMSATIS_SUPABASE_ANON_KEY
     );
+    window.itemsatisSupabase = supabase;
     supabase.auth.getSession().then(({ data }) => updateUser(data.session?.user || null));
     supabase.auth.onAuthStateChange((_event, session) => updateUser(session?.user || null));
   } else {
