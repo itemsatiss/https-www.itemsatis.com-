@@ -1331,7 +1331,7 @@ const type = formData?.type;
   try {
     const imageUrls = [];
 
-    for (const file of [...imageInput.files].slice(0, 5)) {
+    for (const file of [...imageInput.files].slice(0, 10)) {
       if (!file.type.startsWith("image/")) continue;
 
       if (file.size > 10 * 1024 * 1024) {
